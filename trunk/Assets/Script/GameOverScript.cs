@@ -50,12 +50,12 @@ public class GameOverScript : MonoBehaviour {
 		}
 		if(this._isSolved) {
 			Debug.Log ("BRAVO !!");
-			theBall.GetComponent<BallScript>()._absolueVectorForceBall = new Vector3(0,0,0);
+			//theBall.GetComponent<BallScript>()._absolueVectorForceBall = new Vector3(0,0,0);
 			this._isSolved = false;
 			this._isEnded = false;
 		} else if(this._isEnded) {
 			Debug.Log("Dommage");
-			theBall.GetComponent<BallScript>()._absolueVectorForceBall = new Vector3(0,0,0);
+			//theBall.GetComponent<BallScript>()._absolueVectorForceBall = new Vector3(0,0,0);
 			this._isSolved = false;
 			this._isEnded = false;
 		}
