@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Script de comportement d'une porte
+/// </summary>
 public class DoorScript : ElementScript {
 	/// <summary>
 	/// La position Y, afin de pouvoir refermer la porte comme il faut
