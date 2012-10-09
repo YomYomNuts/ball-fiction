@@ -2,9 +2,17 @@ using UnityEngine;
 using System.Collections;
 
 public class BallScript : MonoBehaviour {
-	public float _maxSpeed = 3f;
+	/// <summary>
+	/// Vitesse maximale de la bille
+	/// </summary>
+	public float _maxSpeed = 1f;
 	
 	public GameObject mainCamera;
+	
+	/// <summary>
+	/// Force maximale sur l'objet
+	/// </summary>
+    public Vector3 _absolueVectorForceBall = new Vector3(10,10,10);
 	
 	// Use this for initialization
 	void Start () {
