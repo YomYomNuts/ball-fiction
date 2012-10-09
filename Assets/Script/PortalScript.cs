@@ -13,6 +13,10 @@ public class PortalScript : ElementScript {
 	/// Delta vector afin d'éviter d'apparaître sous l'objet
 	/// </summary>
 	public Vector3 _teleportDelta = new Vector3(0.01f, 0.01f, 0.01f);
+	/// <summary>
+	/// Permet de savoir s'il faut activer le portail quand on en sort
+	/// </summary>
+	public bool _isReactivated = true;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +44,8 @@ public class PortalScript : ElementScript {
 	
 	// Collision pour modifier l'état du portail
 	void OnCollisionExit(Collision collision) {
-		this._isButtonActivated = true;
+		if(this._isReactivated) {
+			this._isButtonActivated = true;
+		}
 	}
 }
