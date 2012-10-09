@@ -28,7 +28,7 @@ public class ElementScript : MonoBehaviour {
 	/// <summary>
 	/// True si le temps de l'animation est terminé
 	/// </summary>
-	private bool isTimeOver {
+	public bool isTimeOver {
 		get {
 			return this._currentTime >= this._time;
 		}

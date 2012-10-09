@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Script de comportement des épines
+/// </summary>
 public class SpikesScript : MonoBehaviour {
 
 	// Use this for initialization

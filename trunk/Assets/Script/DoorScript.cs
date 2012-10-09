@@ -17,7 +17,7 @@ public class DoorScript : ElementScript {
 	
 	// Update is called once per frame
 	void Update () {
-		base.UpdateState();
+		base.UpdateState(); // Mise à jour du statut avec la méthode du parent
 		if(this._isButtonActivated) {
 			this.gameObject.transform.localPosition += new Vector3(0, this._elementSpeed, 0);
 		} else if(this._savedPositionY < this.gameObject.transform.position.y) {
