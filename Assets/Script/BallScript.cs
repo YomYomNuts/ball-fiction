@@ -5,7 +5,7 @@ using System.Collections;
 /// Script de comportement de la bille
 /// </summary>
 public class BallScript : MonoBehaviour {
-	public GameObject mainCamera;
+	public GameObject _mainCamera;
 	
 	/// <summary>
 	/// Force maximale sur l'objet
@@ -28,7 +28,7 @@ public class BallScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		this.mainCamera.transform.position = new Vector3(this.gameObject.transform.position.x,
+		this._mainCamera.transform.position = new Vector3(this.gameObject.transform.position.x,
 														 this.gameObject.transform.position.y + this._hauteurCamera,
 														 this.gameObject.transform.position.z - this._reculCamera);
 	}

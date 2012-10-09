@@ -25,15 +25,15 @@ public class ButtonScript : MonoBehaviour {
 	
 	// Collision pour activer/désactiver le boutton
 	void OnTriggerEnter(Collider collision) {
-		if(_onEnter) {
-			_Element.GetComponent<DoorScript>()._isButtonActivated = true;
+		if(this._onEnter) {
+			this._Element.GetComponent<ElementScript>()._isButtonActivated = true;
 		}
 	}
 	
 	// Collision pour activer/désactiver le boutton
 	void OnTriggerExit(Collider collision) {
-		if(!_onEnter) {
-			_Element.GetComponent<DoorScript>()._isButtonActivated = true;
+		if(! this._onEnter) {
+			this._Element.GetComponent<ElementScript>()._isButtonActivated = true;
 		}
 	}
 }

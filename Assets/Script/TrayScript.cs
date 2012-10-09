@@ -55,17 +55,17 @@ public class TrayScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//Ajout des évènements lors du basculement vers la gauche ou la droite
-        OnLeft += new ActionEvent(OnLeftEventReceived);
-        OnRight += new ActionEvent(OnRightEventReceived);
+        TrayScript.OnLeft += new ActionEvent(OnLeftEventReceived);
+        TrayScript.OnRight += new ActionEvent(OnRightEventReceived);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetButton("Left")) {
-            OnLeft();
+            TrayScript.OnLeft();
 		}
 		if(Input.GetButton("Right")) {
-            OnRight();
+            TrayScript.OnRight();
 		}
 	}
 	

@@ -6,9 +6,9 @@ using System.Collections;
 /// </summary>
 public class GameOverScript : MonoBehaviour {
 	/// <summary>
-	/// La boule
+	/// La bille
 	/// </summary>
-	public GameObject theBall;
+	public GameObject _theBall;
 	
 	/// <summary>
 	/// True si la boule est arrivée à la fin
@@ -19,6 +19,9 @@ public class GameOverScript : MonoBehaviour {
 	/// True si la partie est finie (niveau réussi ou abandon)
 	/// </summary>
 	public bool _isEnded = false;
+	
+	
+	private Vector3 _initialPosition;
 	
     // Définition du type d'évènement
     public delegate void ActionEvent();
@@ -40,24 +43,25 @@ public class GameOverScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-        OnAbandon += new ActionEvent(OnAbandonEventReceived);
+		this._initialPosition = this._theBall.transform.position;
+        GameOverScript.OnAbandon += new ActionEvent(this.OnAbandonEventReceived);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetButton("Abandon")) {
-            this._isEnded = true;
+            GameOverScript.OnAbandon();
 		}
 		if(this._isSolved) {
 			Debug.Log ("BRAVO !!");
-			//theBall.GetComponent<BallScript>()._absolueVectorForceBall = new Vector3(0,0,0);
 			this._isSolved = false;
 			this._isEnded = false;
 		} else if(this._isEnded) {
 			Debug.Log("Dommage");
-			//theBall.GetComponent<BallScript>()._absolueVectorForceBall = new Vector3(0,0,0);
 			this._isSolved = false;
 			this._isEnded = false;
+			this._theBall.transform.position = this._initialPosition;
+			this._theBall.rigidbody.velocity = new Vector3(0, 0, 0);
 		}
 	}
 }
