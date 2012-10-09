@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ElementScript.cs">
+    <Files>
+      <File FileName="Assets\ElementScript.cs" Line="9" Column="29" />
+      <File FileName="Assets\ButtonScript.cs" Line="24" Column="3" />
+      <File FileName="Assets\BreadmillScript.cs" Line="24" Column="37" />
+      <File FileName="Assets\TrayScript.cs" Line="17" Column="89" />
+      <File FileName="Assets\Constants.cs" Line="9" Column="1" />
+      <File FileName="Assets\BallScript.cs" Line="5" Column="30" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
