@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\GameOverScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\PortalScript.cs">
     <Files>
-      <File FileName="Assets\Script\GameOverScript.cs" Line="58" Column="6" />
+      <File FileName="Assets\Script\PortalScript.cs" Line="33" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
