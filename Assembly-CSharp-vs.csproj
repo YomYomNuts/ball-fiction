@@ -50,6 +50,7 @@
      <Compile Include="Assets\Script\DoorScript.cs" />
      <Compile Include="Assets\Script\ElementScript.cs" />
      <Compile Include="Assets\Script\GameOverScript.cs" />
+     <Compile Include="Assets\Script\PortalScript.cs" />
      <Compile Include="Assets\Script\SpikesScript.cs" />
      <Compile Include="Assets\Script\TrayScript.cs" />
      <Compile Include="Assets\Script\Utils.cs" />
