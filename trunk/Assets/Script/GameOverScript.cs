@@ -6,11 +6,6 @@ using System.Collections;
 /// </summary>
 public class GameOverScript : MonoBehaviour {
 	/// <summary>
-	/// La bille
-	/// </summary>
-	public GameObject _theBall;
-	
-	/// <summary>
 	/// True si la boule est arrivée à la fin
 	/// </summary>
 	public bool _isSolved = false;
@@ -19,9 +14,6 @@ public class GameOverScript : MonoBehaviour {
 	/// True si la partie est finie (niveau réussi ou abandon)
 	/// </summary>
 	public bool _isEnded = false;
-	
-	
-	private Vector3 _initialPosition;
 	
     // Définition du type d'évènement
     public delegate void ActionEvent();
@@ -43,7 +35,6 @@ public class GameOverScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		this._initialPosition = this._theBall.transform.position;
         GameOverScript.OnAbandon += new ActionEvent(this.OnAbandonEventReceived);
 	}
 	

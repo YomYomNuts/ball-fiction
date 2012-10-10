@@ -41,6 +41,7 @@ public class TrayScript : MonoBehaviour {
     void OnLeftEventReceived() {
 		if(this.transform.rotation.z < this._maximumLeft) {
         	this.transform.RotateAround(Vector3.forward, this._rotationSpeedTray * Time.deltaTime);
+			Physics.gravity = Quaternion.Euler(0, 0, this._rotationSpeedTray * Time.deltaTime * 100) * Physics.gravity;
 		}
     }
 	/// <summary>
@@ -49,6 +50,7 @@ public class TrayScript : MonoBehaviour {
     void OnRightEventReceived() {
 		if(this.transform.rotation.z > this._maximumRight) {
 	        this.transform.RotateAround(Vector3.back, this._rotationSpeedTray * Time.deltaTime);
+			Physics.gravity = Quaternion.Euler(0, 0, -this._rotationSpeedTray * Time.deltaTime * 100) * Physics.gravity;
 		}
     }
 	
