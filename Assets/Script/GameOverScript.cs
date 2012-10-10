@@ -54,15 +54,10 @@ public class GameOverScript : MonoBehaviour {
 		}
 		if(this._isSolved) {
 			Debug.Log ("BRAVO !!");
-			this._isSolved = false;
-			this._isEnded = false;
+			Application.LoadLevel(Utils.SceneLevelSolved);
 		} else if(this._isEnded) {
 			Debug.Log("Dommage");
-			GameClasse.ResetGame();
-			this._isSolved = false;
-			this._isEnded = false;
-			this._theBall.transform.position = this._initialPosition;
-			this._theBall.rigidbody.velocity = new Vector3(0, 0, 0);
+			Application.LoadLevel(Utils.SceneLevelAbandoned);
 		}
 	}
 }

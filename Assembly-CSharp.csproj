@@ -47,11 +47,14 @@
      <Compile Include="Assets\Script\BallScript.cs" />
      <Compile Include="Assets\Script\BreadmillScript.cs" />
      <Compile Include="Assets\Script\ButtonScript.cs" />
+     <Compile Include="Assets\Script\ClickListenerScript.cs" />
      <Compile Include="Assets\Script\CoinsScript.cs" />
      <Compile Include="Assets\Script\DoorScript.cs" />
      <Compile Include="Assets\Script\ElementScript.cs" />
+     <Compile Include="Assets\Script\EnlargerScript.cs" />
      <Compile Include="Assets\Script\GameClasse.cs" />
      <Compile Include="Assets\Script\GameOverScript.cs" />
+     <Compile Include="Assets\Script\MenuButtonScript.cs" />
      <Compile Include="Assets\Script\PortalScript.cs" />
      <Compile Include="Assets\Script\SpikesScript.cs" />
      <Compile Include="Assets\Script\TrayScript.cs" />
