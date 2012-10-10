@@ -58,6 +58,7 @@ public class GameOverScript : MonoBehaviour {
 			this._isEnded = false;
 		} else if(this._isEnded) {
 			Debug.Log("Dommage");
+			GameClasse.ResetGame();
 			this._isSolved = false;
 			this._isEnded = false;
 			this._theBall.transform.position = this._initialPosition;
