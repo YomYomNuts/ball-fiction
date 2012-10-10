@@ -24,16 +24,15 @@ public class BreadmillScript : MonoBehaviour {
 		} else if(this._ballDirection == Utils.Direction.Back) {
 			texture = Resources.Load("Data/back_arrow", typeof(Texture)) as Texture;
 			
-			// TODO textures non encore implémentés
-			
+		// TODO textures non encore implémentés
 //		} else if(this._ballDirection == Utils.Direction.Left) {
-//			texture = Resources.Load("Data/back_arrow", typeof(Texture)) as Texture;
+//			texture = Resources.Load("Data/left_arrow", typeof(Texture)) as Texture;
 //		} else if(this._ballDirection == Utils.Direction.Right) {
-//			texture = Resources.Load("Data/back_arrow", typeof(Texture)) as Texture;
+//			texture = Resources.Load("Data/right_arrow", typeof(Texture)) as Texture;
 //		} else if(this._ballDirection == Utils.Direction.Up) {
-//			texture = Resources.Load("Data/back_arrow", typeof(Texture)) as Texture;
+//			texture = Resources.Load("Data/up_arrow", typeof(Texture)) as Texture;
 //		} else if(this._ballDirection == Utils.Direction.Down) {
-//			texture = Resources.Load("Data/back_arrow", typeof(Texture)) as Texture;
+//			texture = Resources.Load("Data/down_arrow", typeof(Texture)) as Texture;
 			
 		}
 		this.gameObject.renderer.material.mainTexture = texture;
@@ -53,10 +52,12 @@ public class BreadmillScript : MonoBehaviour {
 	void OnCollisionStay(Collision collision) {
 		// Variable locale contenant le script BallScript
 		BallScript ball = collision.gameObject.GetComponent<BallScript>();
+		// Variable locale contenant la velocité de la bille
+		Vector3 velocity = collision.gameObject.rigidbody.velocity;
 		// On vérifie que la bille n'a pas encore atteint sa vitesse maximale
-		if(Mathf.Abs(collision.gameObject.rigidbody.velocity.x) < Mathf.Abs(ball._absolueVectorForceBall.x) && 
-			Mathf.Abs(collision.gameObject.rigidbody.velocity.y) < Mathf.Abs(ball._absolueVectorForceBall.y) && 
-			Mathf.Abs(collision.gameObject.rigidbody.velocity.z) < Mathf.Abs(ball._absolueVectorForceBall.z)) {
+		if(Mathf.Abs(velocity.x) < Mathf.Abs(ball._absolueVectorForceBall.x) && 
+			Mathf.Abs(velocity.y) < Mathf.Abs(ball._absolueVectorForceBall.y) && 
+			Mathf.Abs(velocity.z) < Mathf.Abs(ball._absolueVectorForceBall.z)) {
 			// On applique la force selon la direction
 			if(this._ballDirection == Utils.Direction.Forward) {
 				collision.gameObject.rigidbody.AddForce(Vector3.forward * this._ballForce);

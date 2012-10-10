@@ -5,78 +5,98 @@ using System.Collections;
 /// Classe du jeu
 /// </summary>
 public class GameClasse {
+	// Singleton
+    private static GameClasse _instance;
 	// Score
-    private static int _score = 0;
+    private int _score = 0;
 	// Temps de décalage du jeu en seconde
-    private static float _gapTime = 0f;
+    private float _gapTime = 0f;
 	// Temps au début du jeu en seconde
-    private static float _startGameTime = 0f;
+    private float _startGameTime = 0f;
+	
+	/// <summary>
+	/// Propriété liée à la classe
+	/// </summary>
+	public static GameClasse Instance {
+		get {
+			if(GameClasse._instance == null) {
+				GameClasse._instance = new GameClasse();
+			}
+			return GameClasse._instance;
+		}
+	}
+	
+	/// <summary>
+	/// Constructeur
+	/// </summary>
+	private GameClasse() {
+	}
 	
 	/// <summary>
 	/// Propriété liée au score
 	/// </summary>
-	public static int Score {
+	public int Score {
 		get {
-			return GameClasse._score;
+			return this._score;
 		}
 		private set {
-			GameClasse._score = value;
+			this._score = value;
 		}
 	}
 	
 	/// <summary>
 	/// Propriété liée au décalage du temps de jeu
 	/// </summary>
-	public static float GapTime {
+	public float GapTime {
 		get {
-			return GameClasse._gapTime;
+			return this._gapTime;
 		}
 		private set {
-			GameClasse._gapTime = value;
+			this._gapTime = value;
 		}
 	}
 	
 	/// <summary>
 	/// Propriété liée au temps de jeu
 	/// </summary>
-	public static float StartGameTime {
+	public float StartGameTime {
 		get {
-			return GameClasse._startGameTime;
+			return this._startGameTime;
 		}
 		private set {
-			GameClasse._startGameTime = value;
+			this._startGameTime = value;
 		}
 	}
 	
 	/// <summary>
 	/// Permet d'obtenir le temps de jeu total
 	/// </summary>
-	public static float GameTime {
+	public float GameTime {
 		get {
-			return Time.time - GameClasse.StartGameTime + GameClasse.GapTime;
+			return Time.time - this.StartGameTime + this.GapTime;
 		}
 	}
 	
 	/// <summary>
 	/// Incrémente le score
 	/// </summary>
-	public static void IncrementScore(int incrementation) {
-		GameClasse.Score += incrementation;
+	public void IncrementScore(int incrementation) {
+		this.Score += incrementation;
 	}
 	
 	/// <summary>
 	/// Incrémente le décalage du temps de jeu
 	/// </summary>
-	public static void IncrementGapTime(float incrementation) {
-		GameClasse.GapTime += incrementation;
+	public void IncrementGapTime(float incrementation) {
+		this.GapTime += incrementation;
 	}
 	
 	/// <summary>
 	/// Remise à zéro de la partie
 	/// </summary>
-	public static void ResetGame() {
-		GameClasse.Score = 0;
-		GameClasse.GapTime = 0;
-		GameClasse.StartGameTime = Time.time;
+	public void ResetGame() {
+		this.Score = 0;
+		this.GapTime = 0;
+		this.StartGameTime = Time.time;
 	}
 }
