@@ -17,13 +17,12 @@ public class MenuButtonScript : MonoBehaviour {
 		this.GetComponent<ClickListenerScript>().OnClicked += new ClickListenerScript.ActionEventClick(
 		() => { // Chargement du bon level selon le type de bouton
 			if(_buttonType == Utils.MenuButton.LevelProto) {
-				Debug.Log("Level Proto");
 				Application.LoadLevel(Utils.SceneLevelProto);
+			} else if(_buttonType == Utils.MenuButton.LevelDemo){
+				Application.LoadLevel(Utils.SceneLevelDemo);
 			} else if(_buttonType == Utils.MenuButton.Quitter){
-				Debug.Log("Quitter");
 				Application.Quit();
 			} else if(_buttonType == Utils.MenuButton.Menu){
-				Debug.Log("Menu");
 				Application.LoadLevel(Utils.SceneMenu);
 			}
 		});

@@ -3,7 +3,7 @@ using System.Collections;
 /// <summary>
 /// Script de comportement de l'aggrandissement de la bille
 /// </summary>
-public class EnlargerScript : ElementScript {
+public class ChangeSizeScript : ElementScript {
 	/// <summary>
 	/// La bille
 	/// </summary>
@@ -12,7 +12,7 @@ public class EnlargerScript : ElementScript {
 	/// <summary>
 	/// Le coefficient par lequel le scale est multiplié
 	/// </summary>
-	public float _coeff = 5f;
+	public float _coeff = 2f;
 	
 	/// <summary>
 	/// Le scale de base de la bille
