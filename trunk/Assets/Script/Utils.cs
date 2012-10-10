@@ -19,6 +19,7 @@ public class Utils {
 	/// </summary>
 	public enum MenuButton {
 		LevelProto,
+		LevelDemo,
 		Menu,
 		Quitter
 	}
@@ -27,6 +28,7 @@ public class Utils {
 	/// Constantes pour pouvoir modifier le nom des scènes facilement
 	/// </summary>
 	public const string SceneLevelProto = "LevelProto";
+	public const string SceneLevelDemo = "LevelDemo";
 	public const string SceneLevelSolved = "LevelSolved";
 	public const string SceneLevelAbandoned = "LevelAbandoned";
 	public const string SceneMenu = "Menu";

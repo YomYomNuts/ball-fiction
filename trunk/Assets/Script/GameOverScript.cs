@@ -11,9 +11,9 @@ public class GameOverScript : MonoBehaviour {
 	public bool _isSolved = false;
 	
 	/// <summary>
-	/// True si la partie est finie (niveau réussi ou abandon)
+	/// True si la partie est abandonnée
 	/// </summary>
-	public bool _isEnded = false;
+	public bool _isAbandoned = false;
 	
     // Définition du type d'évènement
     public delegate void ActionEvent();
@@ -25,7 +25,7 @@ public class GameOverScript : MonoBehaviour {
 	
 	// Evènement déclanché lors de l'appui sur le bouton gauche
     void OnAbandonEventReceived() {
-        this._isEnded = true;
+        this._isAbandoned = true;
     }
 	
 	// Collision pour finir le niveau
@@ -46,7 +46,7 @@ public class GameOverScript : MonoBehaviour {
 		if(this._isSolved) {
 			Debug.Log ("BRAVO !!");
 			Application.LoadLevel(Utils.SceneLevelSolved);
-		} else if(this._isEnded) {
+		} else if(this._isAbandoned) {
 			Debug.Log("Dommage");
 			Application.LoadLevel(Utils.SceneLevelAbandoned);
 		}
