@@ -10,10 +10,6 @@ public class PortalScript : ElementScript {
 	/// </summary>
 	public GameObject _otherEnd;
 	/// <summary>
-	/// Delta vector afin d'éviter d'apparaître sous l'objet
-	/// </summary>
-	public Vector3 _teleportDelta = new Vector3(0.01f, 0.01f, 0.01f);
-	/// <summary>
 	/// Permet de savoir s'il faut activer le portail quand on en sort
 	/// </summary>
 	public bool _isReactivated = true;
@@ -32,7 +28,7 @@ public class PortalScript : ElementScript {
 	void OnCollisionEnter(Collision collision) {
 		if(this._isButtonActivated) {
 			// Changement de la position de la bille avec le delta
-			collision.gameObject.transform.position = this._otherEnd.gameObject.transform.position + this._teleportDelta;
+			collision.gameObject.transform.position = this._otherEnd.gameObject.transform.position;
 			
 			// Vérification si l'autre extremité est un portail
 			if(this._otherEnd.GetComponent<PortalScript>() != null) {
