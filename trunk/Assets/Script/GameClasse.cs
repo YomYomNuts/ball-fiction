@@ -13,6 +13,8 @@ public class GameClasse {
     private float _gapTime = 0f;
 	// Temps au début du jeu en seconde
     private float _startGameTime = 0f;
+	// Le nom du level en cours
+	private string _currentLevelName = null;
 	
 	/// <summary>
 	/// Propriété liée à la classe
@@ -41,6 +43,18 @@ public class GameClasse {
 		}
 		private set {
 			this._score = value;
+		}
+	}
+	
+	/// <summary>
+	/// Propriété liée au nom du level en cours
+	/// </summary>
+	public string CurrentLevelName {
+		get {
+			return this._currentLevelName;
+		}
+		set {
+			this._currentLevelName = value;
 		}
 	}
 	

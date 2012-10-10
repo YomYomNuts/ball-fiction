@@ -44,10 +44,8 @@ public class GameOverScript : MonoBehaviour {
             GameOverScript.OnAbandon();
 		}
 		if(this._isSolved) {
-			Debug.Log ("BRAVO !!");
 			Application.LoadLevel(Utils.SceneLevelSolved);
 		} else if(this._isAbandoned) {
-			Debug.Log("Dommage");
 			Application.LoadLevel(Utils.SceneLevelAbandoned);
 		}
 	}

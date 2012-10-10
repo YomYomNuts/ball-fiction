@@ -18,10 +18,11 @@ public class Utils {
 	/// Les différents bouton du menu
 	/// </summary>
 	public enum MenuButton {
-		LevelProto,
-		LevelDemo,
 		Menu,
-		Quitter
+		RestartLevel,
+		Quitter,
+		LevelProto,
+		LevelDemo
 	}
 	
 	/// <summary>
