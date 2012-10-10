@@ -25,24 +25,27 @@ public class ChangeSizeScript : ElementScript {
 	/// <value>
 	/// <c>true</c> si la bille a un scale normal, <c>false</c> sinon.
 	/// </value>
-	public bool HasNormalScale {
-		get {
-			return this._theBall.transform.localScale == this._normalScale;
-		}
-	}
+	public bool _isChanged = false;
 	
 	// Use this for initialization
 	void Start () {
 		this._normalScale = this._theBall.transform.localScale;
 	}
 	
+	// Collision pour activer/désactiver le boutton
+	void OnTriggerEnter(Collider collision) {
+		if(!this._isButtonActivated && !this._isChanged) {
+			this._theBall.transform.localScale *= this._coeff;
+			this._isChanged = true;
+			this._isButtonActivated = true;
+		}
+	}
 	// Update is called once per frame
 	void Update() {
 		base.UpdateState(); // Mise à jour du statut avec la méthode du parent
-		if (this._isButtonActivated && this.HasNormalScale) {
-			this._theBall.transform.localScale *= this._coeff;
-		} else if (!this._isButtonActivated && !this.HasNormalScale) {
+		if(!this._isButtonActivated && this._isChanged) {
 			this._theBall.transform.localScale = this._normalScale;
+			this._isChanged = false;
 		}
 	}
 }
