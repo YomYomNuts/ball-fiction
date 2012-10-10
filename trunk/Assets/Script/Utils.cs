@@ -13,4 +13,21 @@ public class Utils {
 		Up,
 		Down
 	}
+	
+	/// <summary>
+	/// Les différents bouton du menu
+	/// </summary>
+	public enum MenuButton {
+		LevelProto,
+		Menu,
+		Quitter
+	}
+	
+	/// <summary>
+	/// Constantes pour pouvoir modifier le nom des scènes facilement
+	/// </summary>
+	public const string SceneLevelProto = "LevelProto";
+	public const string SceneLevelSolved = "LevelSolved";
+	public const string SceneLevelAbandoned = "LevelAbandoned";
+	public const string SceneMenu = "Menu";
 }
