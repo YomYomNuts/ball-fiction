@@ -22,7 +22,7 @@ public class CoinsScript : MonoBehaviour {
 	
 	// Collision pour augmenter le score
 	void OnTriggerEnter(Collider collision) {
-		GameClasse.IncrementScore(this._valueCoins);
+		GameClasse.Instance.IncrementScore(this._valueCoins);
 		this.gameObject.active = false;
 	}
 }

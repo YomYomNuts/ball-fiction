@@ -43,7 +43,7 @@ public class PortalScript : ElementScript {
 	}
 	
 	// Collision pour modifier l'état du portail
-	void OnCollisionExit(Collision collision) {
+	void OnTriggerExit(Collider collision) {
 		if(this._isReactivated) {
 			this._isButtonActivated = true;
 		}
