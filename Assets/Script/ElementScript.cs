@@ -43,6 +43,7 @@ public class ElementScript : MonoBehaviour {
 	/// Met à jour l'état de l'élément, en cours d'animation => fin d'animation
 	/// </summary>
 	public void UpdateState() {
+		// On vérifie que "l'animation" a débuté, si c'est le cas, on incrémente le "timer" jusqu'à la fin
 		if(this._isButtonActivated) {
 			if(this.isTimeOver) {
 				this._currentTime = 0.0f;

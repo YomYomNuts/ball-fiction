@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 /// <summary>
-/// Script de comportement du menu
+/// Script de récupération de click
 /// </summary>
 public class ClickListenerScript : MonoBehaviour {
 	
