@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Script permettant d'avoir un gameover
+/// </summary>
 public class ExitZoneScript : MonoBehaviour {
 
 	// Use this for initialization
@@ -14,7 +17,7 @@ public class ExitZoneScript : MonoBehaviour {
 	}
 	
 	
-	// Collision pour GameOver
+	// Collision pour le GameOver
 	void OnTriggerEnter(Collider collision) {
 		Application.LoadLevel(Utils.SceneLevelAbandoned);
 	}
