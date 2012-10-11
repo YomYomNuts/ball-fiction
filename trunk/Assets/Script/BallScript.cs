@@ -5,6 +5,9 @@ using System.Collections;
 /// Script de comportement de la bille
 /// </summary>
 public class BallScript : MonoBehaviour {
+	/// <summary>
+	/// La caméra qui film la bille
+	/// </summary>
 	public GameObject _mainCamera;
 	
 	/// <summary>
@@ -28,6 +31,7 @@ public class BallScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// On place la caméra derrière la bille (TODO mettre la caméra en enfant de la bille pour qu'elle se déplace avec automatiquement)
 		this._mainCamera.transform.position = new Vector3(this.gameObject.transform.position.x,
 														 this.gameObject.transform.position.y + this._hauteurCamera,
 														 this.gameObject.transform.position.z - this._reculCamera);

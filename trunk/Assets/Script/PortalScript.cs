@@ -11,8 +11,9 @@ public class PortalScript : ElementScript {
 	public GameObject _otherEnd;
 	/// <summary>
 	/// Permet de savoir s'il faut activer le portail quand on en sort
+	/// Si on met false, cela produit un portail à sens unique
 	/// </summary>
-	public bool _isReactivated = true;
+	public bool _hasToBeReactivated = true;
 
 	// Use this for initialization
 	void Start () {
@@ -38,9 +39,9 @@ public class PortalScript : ElementScript {
 		}
 	}
 	
-	// Collision pour modifier l'état du portail
+	// Trigger pour modifier l'état du portail
 	void OnTriggerExit(Collider collision) {
-		if(this._isReactivated) {
+		if(this._hasToBeReactivated) {
 			this._isButtonActivated = true;
 		}
 	}

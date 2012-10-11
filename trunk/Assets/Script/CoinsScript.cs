@@ -20,8 +20,9 @@ public class CoinsScript : MonoBehaviour {
 	
 	}
 	
-	// Collision pour augmenter le score
+	// Trigger pour augmenter le score
 	void OnTriggerEnter(Collider collision) {
+		// On incrémente le score et on fait disparaître la pièce
 		GameClasse.Instance.IncrementScore(this._valueCoins);
 		this.gameObject.active = false;
 	}

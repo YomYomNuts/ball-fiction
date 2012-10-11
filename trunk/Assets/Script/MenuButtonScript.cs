@@ -15,7 +15,8 @@ public class MenuButtonScript : MonoBehaviour {
 	void Start () {
 		//Ajout du listener
 		this.GetComponent<ClickListenerScript>().OnClicked += new ClickListenerScript.ActionEventClick(
-		() => { // Chargement du bon level selon le type de bouton
+		() => {
+			// Chargement du bon level selon le type de bouton
 			if(_buttonType == Utils.MenuButton.LevelProto) {
 				GameClasse.Instance.CurrentLevelName = Utils.SceneLevelProto;
 				Application.LoadLevel(Utils.SceneLevelProto);

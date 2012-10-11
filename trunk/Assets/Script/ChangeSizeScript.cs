@@ -20,29 +20,31 @@ public class ChangeSizeScript : ElementScript {
 	private Vector3 _normalScale;
 	
 	/// <summary>
-	/// Permet de savoir si le scale de la bille est normal ou pas (s'il n'est pas normal, c'est qu'elle est encore grande)
+	/// Permet de savoir si la taille de la bille a déjà été changé
 	/// </summary>
 	/// <value>
-	/// <c>true</c> si la bille a un scale normal, <c>false</c> sinon.
+	/// <c>true</c> si la taille de la bille a déjà été changée, <c>false</c> sinon.
 	/// </value>
 	public bool _isChanged = false;
 	
 	// Use this for initialization
 	void Start () {
-		this._normalScale = this._theBall.transform.localScale;
+		this._normalScale = this._theBall.transform.localScale; // on enregistre la taille normale
 	}
 	
-	// Collision pour activer/désactiver le boutton
+	// Trigger pour activer le changement de taille
 	void OnTriggerEnter(Collider collision) {
+		// On vérifie que le bouton n'a pas encore été activé et que la taille n'a pas encore été changée
 		if(!this._isButtonActivated && !this._isChanged) {
-			this._theBall.transform.localScale *= this._coeff;
-			this._isChanged = true;
+			this._theBall.transform.localScale *= this._coeff; // On change la taille
+			this._isChanged = true; // On enregistre le fait que la taille a changé
 			this._isButtonActivated = true;
 		}
 	}
 	// Update is called once per frame
 	void Update() {
 		base.UpdateState(); // Mise à jour du statut avec la méthode du parent
+		// Le bouton se désactive à la fin de l'animation (voir Element Script)
 		if(!this._isButtonActivated && this._isChanged) {
 			this._theBall.transform.localScale = this._normalScale;
 			this._isChanged = false;
