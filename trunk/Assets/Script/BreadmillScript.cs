@@ -16,29 +16,11 @@ public class BreadmillScript : MonoBehaviour {
 	/// <summary>
 	/// Prise en compte ou non de la force maximale de la bille
 	/// </summary>
-    public bool _IgnoreMaxiamalForceBall = false;
+    public bool _IgnoreMaximalForceBall = false;
 
 	// Use this for initialization
 	void Start () {
-		// On affiche la bonne texture selon la direction
-		Texture texture = null;
-		if(this._ballDirection == Utils.Direction.Forward) {
-			texture = Resources.Load("Data/forward_arrow", typeof(Texture)) as Texture;
-		} else if(this._ballDirection == Utils.Direction.Back) {
-			texture = Resources.Load("Data/back_arrow", typeof(Texture)) as Texture;
-			
-		// TODO textures non encore implémentés
-//		} else if(this._ballDirection == Utils.Direction.Left) {
-//			texture = Resources.Load("Data/left_arrow", typeof(Texture)) as Texture;
-//		} else if(this._ballDirection == Utils.Direction.Right) {
-//			texture = Resources.Load("Data/right_arrow", typeof(Texture)) as Texture;
-//		} else if(this._ballDirection == Utils.Direction.Up) {
-//			texture = Resources.Load("Data/up_arrow", typeof(Texture)) as Texture;
-//		} else if(this._ballDirection == Utils.Direction.Down) {
-//			texture = Resources.Load("Data/down_arrow", typeof(Texture)) as Texture;
-			
-		}
-		this.gameObject.renderer.material.mainTexture = texture;
+	
 	}
 	
 	// Update is called once per frame
@@ -58,7 +40,7 @@ public class BreadmillScript : MonoBehaviour {
 		// Variable locale contenant la velocité de la bille
 		Vector3 velocity = collision.gameObject.rigidbody.velocity;
 		// On vérifie que la bille n'a pas encore atteint sa vitesse maximale ou que l'on ignore sa vitesse maximale
-		if(this._IgnoreMaxiamalForceBall ||
+		if(this._IgnoreMaximalForceBall ||
 			(Mathf.Abs(velocity.x) < Mathf.Abs(ball._absolueVectorForceBall.x) && 
 			Mathf.Abs(velocity.y) < Mathf.Abs(ball._absolueVectorForceBall.y) && 
 			Mathf.Abs(velocity.z) < Mathf.Abs(ball._absolueVectorForceBall.z))) {
