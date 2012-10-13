@@ -18,7 +18,7 @@ public class ElementScript : MonoBehaviour {
 	/// <summary>
 	/// Le temps que l'objet attend avant de revenir à sa forme initiale
 	/// </summary>
-	public float _time = 100f;
+	public float _time = 150f;
 	
 	/// <summary>
 	/// Vitesse à laquelle le temps augmente

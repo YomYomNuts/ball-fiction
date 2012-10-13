@@ -40,9 +40,12 @@ public class GameOverScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// Capture de l'appuie sur le bouton d'abandon
 		if(Input.GetButton("Abandon")) {
             GameOverScript.OnAbandon();
 		}
+		
+		// Si le level est terminé, on charge le menu correspondant
 		if(this._isSolved) {
 			GameClasse.Instance.LevelSolved();
 		} else if(this._isAbandoned) {

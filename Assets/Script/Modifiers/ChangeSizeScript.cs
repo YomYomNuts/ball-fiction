@@ -29,25 +29,33 @@ public class ChangeSizeScript : ElementScript {
 	
 	// Use this for initialization
 	void Start () {
-		this._normalScale = this._theBall.transform.localScale; // on enregistre la taille normale
+		if(this._theBall == null) {
+			Debug.LogWarning("There is no ball assigned to a ChangeSizeScript");
+		} else {
+			this._normalScale = this._theBall.transform.localScale; // on enregistre la taille normale
+		}
 	}
 	
 	// Trigger pour activer le changement de taille
 	void OnTriggerEnter(Collider collision) {
-		// On vérifie que le bouton n'a pas encore été activé et que la taille n'a pas encore été changée
-		if(!this._isButtonActivated && !this._isChanged) {
-			this._theBall.transform.localScale *= this._coeff; // On change la taille
-			this._isChanged = true; // On enregistre le fait que la taille a changé
-			this._isButtonActivated = true;
+		if(this._theBall != null) {
+			// On vérifie que le bouton n'a pas encore été activé et que la taille n'a pas encore été changée
+			if(!this._isButtonActivated && !this._isChanged) {
+				this._theBall.transform.localScale *= this._coeff; // On change la taille
+				this._isChanged = true; // On enregistre le fait que la taille a changé
+				this._isButtonActivated = true;
+			}
 		}
 	}
 	// Update is called once per frame
 	void Update() {
 		base.UpdateState(); // Mise à jour du statut avec la méthode du parent
-		// Le bouton se désactive à la fin de l'animation (voir Element Script)
-		if(!this._isButtonActivated && this._isChanged) {
-			this._theBall.transform.localScale = this._normalScale;
-			this._isChanged = false;
+		if(this._theBall != null) {
+			// Le bouton se désactive à la fin de l'animation (voir Element Script)
+			if(!this._isButtonActivated && this._isChanged) {
+				this._theBall.transform.localScale = this._normalScale;
+				this._isChanged = false;
+			}
 		}
 	}
 }

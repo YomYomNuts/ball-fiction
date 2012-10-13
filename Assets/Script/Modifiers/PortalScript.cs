@@ -17,7 +17,9 @@ public class PortalScript : ElementScript {
 
 	// Use this for initialization
 	void Start () {
-	
+		if(this._otherEnd == null) {
+			Debug.LogWarning("There is no other end assigned to a PortalScript");
+		}
 	}
 	
 	// Update is called once per frame
@@ -27,14 +29,16 @@ public class PortalScript : ElementScript {
 	
 	// Collision pour faire bouger la bille
 	void OnCollisionEnter(Collision collision) {
-		if(this._isButtonActivated) {
-			// Changement de la position de la bille avec le delta
-			collision.gameObject.transform.position = this._otherEnd.gameObject.transform.position;
-			
-			// Vérification si l'autre extremité est un portail
-			if(this._otherEnd.GetComponent<PortalScript>() != null) {
-				// Permet d'éviter les téléports infinis
-				this._otherEnd.GetComponent<PortalScript>()._isButtonActivated = false;
+		if(this._otherEnd != null) {
+			if(this._isButtonActivated) {
+				// Changement de la position de la bille avec le delta
+				collision.gameObject.transform.position = this._otherEnd.gameObject.transform.position;
+				
+				// Vérification si l'autre extremité est un portail
+				if(this._otherEnd.GetComponent<PortalScript>() != null) {
+					// Permet d'éviter les téléports infinis
+					this._otherEnd.GetComponent<PortalScript>()._isButtonActivated = false;
+				}
 			}
 		}
 	}

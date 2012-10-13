@@ -1,0 +1,34 @@
+using UnityEngine;
+using System.Collections;
+
+/// <summary>
+/// Script général de comportement d'un bouton qui est activé/désactivé quand on appuie dessus
+/// </summary>
+public class InverseTreadmillButtonScript : PonctualButtonScript {
+	/// <summary>
+	/// The breadmils which have to be inversed
+	/// </summary>
+	public GameObject _theTreadmills;
+	
+	// Use this for initialization
+	void Start () {
+		if(this._theTreadmills == null) {
+			Debug.LogWarning("There is no treadmills assigned to an InverseTreadmillButtonScript");
+		}
+	}
+	
+	// Update is called once per frame
+	void Update () {}
+	
+	override protected void ActionWhenActivated() {
+		if(this._theTreadmills != null) {
+			foreach(Transform current in this._theTreadmills.transform) {
+				current.gameObject.GetComponent<TreadmillScript>().InverseDirection();
+			}
+		}
+	}
+	
+	override protected void ActionWhenNonActivated() {
+		this.ActionWhenActivated();
+	}
+}

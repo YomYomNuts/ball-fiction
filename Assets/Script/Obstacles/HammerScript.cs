@@ -4,11 +4,11 @@ using System.Collections;
 // TODO
 
 /// <summary>
-/// Script de comportement des épines
+/// Script de comportement des marteaux
 /// </summary>
 public class HammerScript : MonoBehaviour {
 	/// <summary>
-	/// La latence entre 2 collision, pour ne pas que la collision s'exécute plusieurs fois en une seule
+	/// La latence entre 2 collisions, pour ne pas que la collision s'exécute plusieurs fois en une seule
 	/// </summary>
 	public float _latency = 3f;
 	
