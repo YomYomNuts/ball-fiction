@@ -15,7 +15,7 @@ public class GameClasse {
     private float _startGameTime = 0f;
 	// Le nom du level en cours
 	private string _currentLevelName = Utils.SceneMenu;
-	// La gravité au début du niveau
+	// La gravité au début du niveau (pour la réinitialiser quand le level est terminé)
 	private Vector3 _originalGravity;
 	
 	/// <summary>
@@ -128,16 +128,25 @@ public class GameClasse {
 		this.StartGameTime = Time.time;
 	}
 	
+	/// <summary>
+	/// Méthode à appeler quand le level est abandonné
+	/// </summary>
 	public void LevelAbandoned() {
 		Physics.gravity = this.OriginalGravity;
 		Application.LoadLevel(Utils.SceneLevelAbandoned);
 	}
 	
+	/// <summary>
+	/// Méthode à appeler quand le level est perdu (sortie du plateau)
+	/// </summary>
 	public void LevelLost() {
 		Physics.gravity = this.OriginalGravity;
 		Application.LoadLevel(Utils.SceneLevelAbandoned);
 	}
 	
+	/// <summary>
+	/// Méthode à appeler quand le level est réussi
+	/// </summary>
 	public void LevelSolved() {
 		Physics.gravity = this.OriginalGravity;
 		Application.LoadLevel(Utils.SceneLevelSolved);

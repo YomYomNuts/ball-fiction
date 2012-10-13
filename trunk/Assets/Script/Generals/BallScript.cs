@@ -8,7 +8,7 @@ public class BallScript : MonoBehaviour {
 	/// <summary>
 	/// La caméra qui film la bille
 	/// </summary>
-	public GameObject _mainCamera;
+	public GameObject _theCamera;
 	
 	/// <summary>
 	/// Force maximale sur l'objet
@@ -27,13 +27,18 @@ public class BallScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		if(this._theCamera == null) {
+			Debug.LogWarning("There is no camera assigned to a BallScript");
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		// On place la caméra derrière la bille (TODO mettre la caméra en enfant de la bille pour qu'elle se déplace avec automatiquement)
-		this._mainCamera.transform.position = new Vector3(this.gameObject.transform.position.x,
-														 this.gameObject.transform.position.y + this._hauteurCamera,
-														 this.gameObject.transform.position.z - this._reculCamera);
+		if(this._theCamera != null) {
+			// On place la caméra derrière la bille
+			this._theCamera.transform.position = new Vector3(this.gameObject.transform.position.x,
+															 this.gameObject.transform.position.y + this._hauteurCamera,
+															 this.gameObject.transform.position.z - this._reculCamera);
+		}
 	}
 }

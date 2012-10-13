@@ -5,11 +5,10 @@ using System.Collections;
 /// Script gérant le comportement de basculement du plateau
 /// </summary>
 public class TrayScript : MonoBehaviour {
-	
 	/// <summary>
 	/// La bille
 	/// </summary>
-	public GameObject _ball;
+	public GameObject _theBall;
 	/// <summary>
 	/// La vitesse à laquelle la rotation s'effectue
 	/// </summary>
@@ -45,9 +44,9 @@ public class TrayScript : MonoBehaviour {
     void OnLeftEventReceived() {
 		//Vérification de l'angle maximal avant d'appliquer une nouvelle gravité
 		if(this.transform.rotation.eulerAngles.z > (360 - this._maximumRotationAngle) || this.transform.rotation.eulerAngles.z < this._maximumRotationAngle + this._maximumRotationAngleDelta) {
-			if(this._ball != null) {
+			if(this._theBall != null) {
 				// Ajout d'une force de répulsion
-				this._ball.rigidbody.AddForce(Vector3.up * _repulsionForce);
+				this._theBall.rigidbody.AddForce(Vector3.up * _repulsionForce);
 			}
         	this.transform.RotateAround(Vector3.back, this._rotationSpeedTray * Time.deltaTime);
 			Physics.gravity = Quaternion.Euler(0, 0, -this._rotationSpeedTray * Time.deltaTime * 100) * Physics.gravity;
@@ -59,9 +58,9 @@ public class TrayScript : MonoBehaviour {
     void OnRightEventReceived() {
 		//Vérification de l'angle maximal avant d'appliquer une nouvelle gravité
 		if(this.transform.rotation.eulerAngles.z > (360 - this._maximumRotationAngle - this._maximumRotationAngleDelta) || this.transform.rotation.eulerAngles.z < this._maximumRotationAngle) {
-			if(this._ball != null) {
+			if(this._theBall != null) {
 				// Ajout d'une force de répulsion
-				this._ball.rigidbody.AddForce(Vector3.up * _repulsionForce);
+				this._theBall.rigidbody.AddForce(Vector3.up * _repulsionForce);
 			}
 	        this.transform.RotateAround(Vector3.forward, this._rotationSpeedTray * Time.deltaTime);
 			Physics.gravity = Quaternion.Euler(0, 0, this._rotationSpeedTray * Time.deltaTime * 100) * Physics.gravity;
@@ -70,6 +69,9 @@ public class TrayScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		if(this._theBall == null) {
+			Debug.LogWarning("There is no ball assigned to a TrayScript");
+		}
 		GameClasse.Instance.InitGame();
 		//Ajout des évènements lors du basculement vers la gauche ou la droite
         this.OnLeft += new ActionEvent(OnLeftEventReceived);
