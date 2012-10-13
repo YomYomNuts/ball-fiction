@@ -28,7 +28,7 @@ public class BallScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if(this._theCamera == null) {
-			Debug.LogWarning("There is no camera assigned to a BallScript");
+			Utils.WarningMessageWhenNoGameObjectAssigned("camera", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
 	

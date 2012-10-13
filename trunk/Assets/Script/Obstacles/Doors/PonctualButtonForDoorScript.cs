@@ -32,7 +32,7 @@ public class PonctualButtonForDoorScript : PonctualButtonScript {
 	// Use this for initialization
 	void Start () {
 		if(this._theDoor == null) {
-			Debug.LogWarning("There is no door assigned to a PonctualButtonForDoorScript");
+			Utils.WarningMessageWhenNoGameObjectAssigned("door", this.GetType().ToString(), this.gameObject.name);
 		} else {
 			this._savedPosition = this._theDoor.transform.localPosition;
 		}
