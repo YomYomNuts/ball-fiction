@@ -44,9 +44,9 @@ public class GameOverScript : MonoBehaviour {
             GameOverScript.OnAbandon();
 		}
 		if(this._isSolved) {
-			Application.LoadLevel(Utils.SceneLevelSolved);
+			GameClasse.Instance.LevelSolved();
 		} else if(this._isAbandoned) {
-			Application.LoadLevel(Utils.SceneLevelAbandoned);
+			GameClasse.Instance.LevelAbandoned();
 		}
 	}
 }

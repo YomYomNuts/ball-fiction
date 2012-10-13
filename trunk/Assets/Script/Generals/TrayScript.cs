@@ -5,6 +5,7 @@ using System.Collections;
 /// Script gérant le comportement de basculement du plateau
 /// </summary>
 public class TrayScript : MonoBehaviour {
+	
 	/// <summary>
 	/// La bille
 	/// </summary>
@@ -69,6 +70,7 @@ public class TrayScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		GameClasse.Instance.InitGame();
 		//Ajout des évènements lors du basculement vers la gauche ou la droite
         this.OnLeft += new ActionEvent(OnLeftEventReceived);
         this.OnRight += new ActionEvent(OnRightEventReceived);

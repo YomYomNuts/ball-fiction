@@ -14,7 +14,9 @@ public class GameClasse {
 	// Temps au début du jeu en seconde
     private float _startGameTime = 0f;
 	// Le nom du level en cours
-	private string _currentLevelName = null;
+	private string _currentLevelName = Utils.SceneMenu;
+	// La gravité au début du niveau
+	private Vector3 _originalGravity;
 	
 	/// <summary>
 	/// Propriété liée à la classe
@@ -31,8 +33,7 @@ public class GameClasse {
 	/// <summary>
 	/// Constructeur
 	/// </summary>
-	private GameClasse() {
-	}
+	private GameClasse() {}
 	
 	/// <summary>
 	/// Propriété liée au score
@@ -83,6 +84,18 @@ public class GameClasse {
 	}
 	
 	/// <summary>
+	/// Propriété liée au temps de jeu
+	/// </summary>
+	public Vector3 OriginalGravity {
+		get {
+			return this._originalGravity;
+		}
+		private set {
+			this._originalGravity = value;
+		}
+	}
+	
+	/// <summary>
 	/// Permet d'obtenir le temps de jeu total
 	/// </summary>
 	public float GameTime {
@@ -106,11 +119,27 @@ public class GameClasse {
 	}
 	
 	/// <summary>
-	/// Remise à zéro de la partie
+	/// Initialise la partie
 	/// </summary>
-	public void ResetGame() {
+	public void InitGame() {
+		this.OriginalGravity = Physics.gravity;
 		this.Score = 0;
 		this.GapTime = 0;
 		this.StartGameTime = Time.time;
+	}
+	
+	public void LevelAbandoned() {
+		Physics.gravity = this.OriginalGravity;
+		Application.LoadLevel(Utils.SceneLevelAbandoned);
+	}
+	
+	public void LevelLost() {
+		Physics.gravity = this.OriginalGravity;
+		Application.LoadLevel(Utils.SceneLevelAbandoned);
+	}
+	
+	public void LevelSolved() {
+		Physics.gravity = this.OriginalGravity;
+		Application.LoadLevel(Utils.SceneLevelSolved);
 	}
 }
