@@ -13,7 +13,7 @@ public class StopBallScript : PonctualButtonScript {
 	// Use this for initialization
 	void Start () {
 		if(this._theBall == null) {
-			Debug.LogWarning("There is no ball assigned to a StopBallScript");
+			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
 	

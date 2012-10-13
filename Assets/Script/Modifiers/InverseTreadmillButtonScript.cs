@@ -13,7 +13,7 @@ public class InverseTreadmillButtonScript : PonctualButtonScript {
 	// Use this for initialization
 	void Start () {
 		if(this._theTreadmills == null) {
-			Debug.LogWarning("There is no treadmills assigned to an InverseTreadmillButtonScript");
+			Utils.WarningMessageWhenNoGameObjectAssigned("treadmills", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
 	

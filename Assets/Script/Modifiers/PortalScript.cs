@@ -18,7 +18,7 @@ public class PortalScript : ElementScript {
 	// Use this for initialization
 	void Start () {
 		if(this._otherEnd == null) {
-			Debug.LogWarning("There is no other end assigned to a PortalScript");
+			Utils.WarningMessageWhenNoGameObjectAssigned("other end", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
 	

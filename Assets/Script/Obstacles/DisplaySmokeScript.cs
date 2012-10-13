@@ -23,7 +23,7 @@ public class DisplaySmokeScript : ElementScript {
 	// Use this for initialization
 	void Start() {
 		if(this._theSmoke == null) {
-			Debug.LogWarning("There is no smoke assigned to a DisplaySmokeScript");
+			Utils.WarningMessageWhenNoGameObjectAssigned("smoke", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
 	// Update is called once per frame
