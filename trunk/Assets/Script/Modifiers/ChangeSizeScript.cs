@@ -3,7 +3,7 @@ using System.Collections;
 /// <summary>
 /// Script de comportement de l'aggrandissement de la bille
 /// </summary>
-public class ChangeSizeScript : ElementScript {
+public class ChangeSizeScript : TimedButtonScript {
 	/// <summary>
 	/// La bille
 	/// </summary>
@@ -35,24 +35,15 @@ public class ChangeSizeScript : ElementScript {
 			this._normalScale = this._theBall.transform.localScale; // on enregistre la taille normale
 		}
 	}
-	
-	// Trigger pour activer le changement de taille
-	void OnTriggerEnter(Collider collision) {
-		if(this._theBall != null) {
-			// On vérifie que le bouton n'a pas encore été activé et que la taille n'a pas encore été changée
-			if(!this._isButtonActivated && !this._isChanged) {
-				this._theBall.transform.localScale *= this._coeff; // On change la taille
-				this._isChanged = true; // On enregistre le fait que la taille a changé
-				this._isButtonActivated = true;
-			}
-		}
-	}
 	// Update is called once per frame
 	void Update() {
 		base.UpdateState(); // Mise à jour du statut avec la méthode du parent
 		if(this._theBall != null) {
-			// Le bouton se désactive à la fin de l'animation (voir Element Script)
-			if(!this._isButtonActivated && this._isChanged) {
+			if(this.IsActivated && !this._isChanged) {
+				this._theBall.transform.localScale *= this._coeff; // On change la taille
+				this._isChanged = true; // On enregistre le fait que la taille a changé
+				// Le bouton se désactive à la fin de l'animation (voir TimedButtonScript)
+			} else if(!this.IsActivated && this._isChanged) {
 				this._theBall.transform.localScale = this._normalScale;
 				this._isChanged = false;
 			}
