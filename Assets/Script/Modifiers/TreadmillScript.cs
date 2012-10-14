@@ -42,25 +42,27 @@ public class TreadmillScript : MonoBehaviour {
 		} else {
 			// Variable locale contenant la velocité de la bille
 			Vector3 velocity = collision.gameObject.rigidbody.velocity;
-			// On vérifie que la bille n'a pas encore atteint sa vitesse maximale ou que l'on ignore sa vitesse maximale
-			if(this._ignoreMaximalForceBall ||
-				(Mathf.Abs(velocity.x) < Mathf.Abs(ball._absolueVectorForceBall.x) && 
-				Mathf.Abs(velocity.y) < Mathf.Abs(ball._absolueVectorForceBall.y) && 
-				Mathf.Abs(velocity.z) < Mathf.Abs(ball._absolueVectorForceBall.z))) {
-				// On applique la force selon la direction
-				if(this._ballDirection == Utils.Direction.Forward) {
-					collision.gameObject.rigidbody.AddForce(Vector3.forward * this._ballForce);
-				} else if(this._ballDirection == Utils.Direction.Back) {
-					collision.gameObject.rigidbody.AddForce(Vector3.back * this._ballForce);
-				} else if(this._ballDirection == Utils.Direction.Left) {
-					collision.gameObject.rigidbody.AddForce(Vector3.left * this._ballForce);
-				} else if(this._ballDirection == Utils.Direction.Right) {
-					collision.gameObject.rigidbody.AddForce(Vector3.right * this._ballForce);
-				} else if(this._ballDirection == Utils.Direction.Up) {
-					collision.gameObject.rigidbody.AddForce(Vector3.up * this._ballForce);
-				} else if(this._ballDirection == Utils.Direction.Down) {
-					collision.gameObject.rigidbody.AddForce(Vector3.down * this._ballForce);
-				}
+			// Variables locales permettant de savoir si la bille peut être poussée dans chacune des direction
+			// Elle peut être poussée si le maximum n'est pas encore atteint ou si on l'ignore (le max)
+			bool forwardPossible = this._ignoreMaximalForceBall || velocity.z < ball._absolueVectorForceBall.z;
+			bool backPossible = this._ignoreMaximalForceBall || velocity.z > -ball._absolueVectorForceBall.z;
+			bool leftPossible = this._ignoreMaximalForceBall || velocity.x > -ball._absolueVectorForceBall.x;
+			bool rightPossible = this._ignoreMaximalForceBall || velocity.x < ball._absolueVectorForceBall.x;
+			bool upPossible = this._ignoreMaximalForceBall || velocity.y < ball._absolueVectorForceBall.y;
+			bool downPossible = this._ignoreMaximalForceBall || velocity.y > -ball._absolueVectorForceBall.y;
+			// On applique la force selon la direction (en vérifiant si on peut lui appliquer la force)
+			if(this._ballDirection == Utils.Direction.Forward && forwardPossible) {
+				collision.gameObject.rigidbody.AddForce(Vector3.forward * this._ballForce);
+			} else if(this._ballDirection == Utils.Direction.Back && backPossible) {
+				collision.gameObject.rigidbody.AddForce(Vector3.back * this._ballForce);
+			} else if(this._ballDirection == Utils.Direction.Left && leftPossible) {
+				collision.gameObject.rigidbody.AddForce(Vector3.left * this._ballForce);
+			} else if(this._ballDirection == Utils.Direction.Right && rightPossible) {
+				collision.gameObject.rigidbody.AddForce(Vector3.right * this._ballForce);
+			} else if(this._ballDirection == Utils.Direction.Up && upPossible) {
+				collision.gameObject.rigidbody.AddForce(Vector3.up * this._ballForce);
+			} else if(this._ballDirection == Utils.Direction.Down && downPossible) {
+				collision.gameObject.rigidbody.AddForce(Vector3.down * this._ballForce);
 			}
 		}
 	}
