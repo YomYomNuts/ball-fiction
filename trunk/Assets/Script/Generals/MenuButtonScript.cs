@@ -17,20 +17,25 @@ public class MenuButtonScript : MonoBehaviour {
 		this.GetComponent<ClickListenerScript>().OnClicked += new ClickListenerScript.ActionEventClick(
 		() => {
 			// Chargement du bon level selon le type de bouton
-			if(_buttonType == Utils.MenuButton.LevelProto) {
-				GameClasse.Instance.CurrentLevelName = Utils.SceneLevelProto;
-				Application.LoadLevel(Utils.SceneLevelProto);
-			} else if(_buttonType == Utils.MenuButton.LevelDemo){
+			if(_buttonType == Utils.MenuButton.LevelDemo){
 				GameClasse.Instance.CurrentLevelName = Utils.SceneLevelDemo;
-				Application.LoadLevel(Utils.SceneLevelDemo);
-			} else if(_buttonType == Utils.MenuButton.RestartLevel){
-				Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
+				
 			} else if(_buttonType == Utils.MenuButton.Menu){
 				GameClasse.Instance.CurrentLevelName = Utils.SceneMenu;
-				Application.LoadLevel(Utils.SceneMenu);
+				
 			} else if(_buttonType == Utils.MenuButton.Quitter){
 				Application.Quit();
+				
+			} else if(_buttonType == Utils.MenuButton.Level1) {
+				GameClasse.Instance.CurrentLevelName = Utils.SceneLevel1;
+				
+			} else if(_buttonType == Utils.MenuButton.Level2) {
+				GameClasse.Instance.CurrentLevelName = Utils.SceneLevel2;
+				
+			} else if(_buttonType == Utils.MenuButton.Level3) {
+				GameClasse.Instance.CurrentLevelName = Utils.SceneLevel3;
 			}
+			Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
 		});
 	}
 	

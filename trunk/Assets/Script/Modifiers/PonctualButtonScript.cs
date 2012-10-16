@@ -11,7 +11,7 @@ abstract public class PonctualButtonScript : MonoBehaviour {
     public bool _onEnter = true;
 	
 	// Permet de savoir si le bouton est activé ou désactivé
-	private bool _isActivated = false;
+	public bool _isActivated = false;
 	
 	/// <summary>
 	/// Propriété liée à l'activation ou non du bouton

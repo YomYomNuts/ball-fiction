@@ -141,7 +141,7 @@ public class GameClasse {
 	/// </summary>
 	public void LevelLost() {
 		Physics.gravity = this.OriginalGravity;
-		Application.LoadLevel(Utils.SceneLevelAbandoned);
+		Application.LoadLevel(Utils.SceneLevelLost);
 	}
 	
 	/// <summary>
