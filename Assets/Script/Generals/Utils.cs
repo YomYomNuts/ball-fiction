@@ -23,17 +23,22 @@ public class Utils {
 		Menu,
 		RestartLevel,
 		Quitter,
-		LevelProto,
-		LevelDemo
+		LevelDemo,
+		Level1,
+		Level2,
+		Level3
 	}
 	
 	/// <summary>
 	/// Constantes pour pouvoir modifier le nom des scènes facilement
 	/// </summary>
-	public const string SceneLevelProto = "LevelProto";
+	public const string SceneLevel1 = "Level1-tutorial";
+	public const string SceneLevel2 = "Level2";
+	public const string SceneLevel3 = "Level3-todo";
 	public const string SceneLevelDemo = "LevelDemo";
 	public const string SceneLevelSolved = "LevelSolved";
 	public const string SceneLevelAbandoned = "LevelAbandoned";
+	public const string SceneLevelLost = "LevelLost";
 	public const string SceneMenu = "Menu";
 	
 	/// <summary>

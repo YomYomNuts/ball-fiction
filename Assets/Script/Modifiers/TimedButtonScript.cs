@@ -6,7 +6,7 @@ using System.Collections;
 /// </summary>
 public class TimedButtonScript : MonoBehaviour {
 	// Permet de savoir si le bouton est activé ou désactivé
-	private bool _isActivated = false;
+	public bool _isActivated = false;
 	// Le temps passé depuis l'activation
 	private float _currentTime = 0.0f;
 	
@@ -61,14 +61,19 @@ public class TimedButtonScript : MonoBehaviour {
 	// Trigger pour activer le boutton
 	void OnTriggerEnter(Collider collision) {
 		if(this._onEnter) {
-			this.IsActivated = true;
+			this.ActivateTheButton();
 		}
 	}
 	
 	// Trigger pour activer le boutton
 	void OnTriggerExit(Collider collision) {
 		if(! this._onEnter) {
-			this.IsActivated = true;
+			this.ActivateTheButton();
 		}
+	}
+	
+	private void ActivateTheButton() {
+		this._currentTime = 0.0f;
+		this.IsActivated = true;
 	}
 }
