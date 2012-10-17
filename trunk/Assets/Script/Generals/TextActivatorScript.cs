@@ -16,19 +16,13 @@ public class TextActivatorScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		if(this._textToActivate == null && this.transform.parent == null) {
+		if(this._textToActivate == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("text", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
 	
 	void OnTriggerEnter (Collider collider) {
-		if(this._textToActivate == null) {
-			Transform parentObject = this.transform.parent;
-			Debug.Log(parentObject);
-			if(parentObject != null) {
-				parentObject.gameObject.SetActiveRecursively(this._isActivator);
-			}
-		} else {
+		if(this._textToActivate != null) {
 			this._textToActivate.SetActiveRecursively(this._isActivator);
 		}
 	}
