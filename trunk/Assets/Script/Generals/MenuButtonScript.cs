@@ -5,14 +5,18 @@ using System.Collections;
 /// Script de comportement des bouton de menu
 /// </summary>
 public class MenuButtonScript : MonoBehaviour {
-	
 	/// <summary>
 	/// Type du bouton (détermine de l'action à effectuer)
 	/// </summary>
 	public Utils.MenuButton _buttonType = Utils.MenuButton.Quitter;
 	
+	// Les cubes qui tournent autour du bouton
+	private GameObject _cubes;
+	
 	// Use this for initialization
 	void Start () {
+		this._cubes = this.transform.parent.FindChild("Cubes").gameObject;
+		this._cubes.SetActiveRecursively(false);
 		//Ajout du listener
 		this.GetComponent<ClickListenerScript>().OnClicked += new ClickListenerScript.ActionEventClick(
 		() => {
@@ -40,6 +44,13 @@ public class MenuButtonScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () {}
+	
+	void OnMouseEnter() {
+		this._cubes.SetActiveRecursively(true);
+	}
+	
+	void OnMouseExit() {
+		this._cubes.SetActiveRecursively(false);
 	}
 }
