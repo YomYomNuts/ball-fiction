@@ -1,7 +1,9 @@
 fileFormatVersion: 2
 guid: 1da3222fa5868e840a8a65b2553fb8e1
 ModelImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    4300000: Portal
+    7400000: Default Take //// portal
   serializedVersion: 10
   materials:
     importMaterials: 1
@@ -35,4 +37,20 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  textMetaNamesToFileIDs: {}
+  textMetaNamesToFileIDs:
+    //RootNode:
+      data:
+        first: 1
+        second: a0860100
+      data:
+        first: 4
+        second: 801a0600
+      data:
+        first: 23
+        second: 60182300
+      data:
+        first: 33
+        second: a05a3200
+      data:
+        first: 111
+        second: 605fa900

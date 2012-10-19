@@ -40,5 +40,6 @@ public class BallScript : MonoBehaviour {
 															 this.gameObject.transform.position.y + this._hauteurCamera,
 															 this.gameObject.transform.position.z - this._reculCamera);
 		}
+		DisplayScoreAndTime.Instance.DisplayTime();
 	}
 }

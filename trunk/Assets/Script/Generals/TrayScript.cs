@@ -24,7 +24,7 @@ public class TrayScript : MonoBehaviour {
 	/// <summary>
 	/// Delta de l'angle maximal de rotation
 	/// </summary>
-	public float _maximumRotationAngleDelta = 0.6f;
+	public float _maximumRotationAngleDelta = 5f;
 	
     // Définition du type d'évènement
     public delegate void ActionEvent();
@@ -43,7 +43,8 @@ public class TrayScript : MonoBehaviour {
 	/// </summary>
     void OnLeftEventReceived() {
 		//Vérification de l'angle maximal avant d'appliquer une nouvelle gravité
-		if(this.transform.rotation.eulerAngles.z > (360 - this._maximumRotationAngle) || this.transform.rotation.eulerAngles.z < this._maximumRotationAngle + this._maximumRotationAngleDelta) {
+		if(this.transform.rotation.eulerAngles.z > (360 - this._maximumRotationAngle)
+		   || this.transform.rotation.eulerAngles.z < this._maximumRotationAngle + this._maximumRotationAngleDelta) {
 			if(this._theBall != null) {
 				// Ajout d'une force de répulsion
 				this._theBall.rigidbody.AddForce(Vector3.up * _repulsionForce);
@@ -57,7 +58,8 @@ public class TrayScript : MonoBehaviour {
 	/// </summary>
     void OnRightEventReceived() {
 		//Vérification de l'angle maximal avant d'appliquer une nouvelle gravité
-		if(this.transform.rotation.eulerAngles.z > (360 - this._maximumRotationAngle - this._maximumRotationAngleDelta) || this.transform.rotation.eulerAngles.z < this._maximumRotationAngle) {
+		if(this.transform.rotation.eulerAngles.z < this._maximumRotationAngle
+		   || this.transform.rotation.eulerAngles.z > (360 - this._maximumRotationAngle - this._maximumRotationAngleDelta)) {
 			if(this._theBall != null) {
 				// Ajout d'une force de répulsion
 				this._theBall.rigidbody.AddForce(Vector3.up * _repulsionForce);
