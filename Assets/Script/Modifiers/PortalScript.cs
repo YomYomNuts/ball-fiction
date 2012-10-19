@@ -4,11 +4,15 @@ using System.Collections;
 /// <summary>
 /// Script de comportement d'un portail
 /// </summary>
-public class PortalScript : ElementScript {
+public class PortalScript : MonoBehaviour{
 	/// <summary>
 	/// L 'autre extremité du téléport
 	/// </summary>
 	public GameObject _otherEnd;
+	/// <summary>
+	/// True si le portail est actif
+	/// </summary>
+    public bool _isActivated = true;
 	/// <summary>
 	/// Permet de savoir s'il faut activer le portail quand on en sort
 	/// Si on met false, cela produit un portail à sens unique
@@ -22,22 +26,19 @@ public class PortalScript : ElementScript {
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		base.UpdateState();
-	}
-	
 	// Collision pour faire bouger la bille
 	void OnCollisionEnter(Collision collision) {
 		if(this._otherEnd != null) {
-			if(this._isButtonActivated) {
+			if(this._isActivated) {
+				Vector3 newPosition = this._otherEnd.gameObject.transform.position;
+				newPosition.y = collision.gameObject.transform.position.y;
 				// Changement de la position de la bille avec le delta
-				collision.gameObject.transform.position = this._otherEnd.gameObject.transform.position;
+				collision.gameObject.transform.position = newPosition;
 				
 				// Vérification si l'autre extremité est un portail
 				if(this._otherEnd.GetComponent<PortalScript>() != null) {
 					// Permet d'éviter les téléports infinis
-					this._otherEnd.GetComponent<PortalScript>()._isButtonActivated = false;
+					this._otherEnd.GetComponent<PortalScript>()._isActivated = false;
 				}
 			}
 		}
@@ -46,7 +47,7 @@ public class PortalScript : ElementScript {
 	// Trigger pour modifier l'état du portail
 	void OnTriggerExit(Collider collision) {
 		if(this._hasToBeReactivated) {
-			this._isButtonActivated = true;
+			this._isActivated = true;
 		}
 	}
 }

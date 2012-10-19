@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Classe permettant de centraliser les méthodes, constantes, énumération, etc... utiles au projet
@@ -55,5 +56,33 @@ public class Utils {
 	/// </param>
 	public static void WarningMessageWhenNoGameObjectAssigned(string missingObjectName, string scriptName, string objectName) {
 		Debug.LogWarning(string.Format("There is no {0} assigned to the {1} of {2}", missingObjectName, scriptName, objectName));
+	}
+	
+	public static string FormatTime(float theTime) {
+		float sec = theTime;
+		int hours = (int)sec/3600;
+		sec -= hours*3600;
+		int min = (int)sec/60;
+		sec -= min*60;
+		string minuts = string.Format("{0}",min);
+		if(min < 10) {
+			minuts = string.Concat("0",minuts);
+		}
+		string seconds = string.Format("{0}",Math.Round(sec,3));
+		if(sec < 10) {
+			seconds = string.Concat("0",seconds);
+		}
+		if(seconds.Contains(".")) {
+			while(seconds.Length < 6) {
+				seconds = string.Concat(seconds,"0");
+			}
+		} else {
+			seconds = string.Concat(seconds,".000");
+		}
+		return string.Format("{0}:{1}:{2}",hours, minuts,seconds);
+	}
+	
+	public static string FormatScore(int score) {
+			return string.Format("{0}",score);
 	}
 }

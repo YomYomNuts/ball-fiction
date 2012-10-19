@@ -37,9 +37,7 @@ public class TreadmillScript : MonoBehaviour {
 	void OnCollisionStay(Collision collision) {
 		// Variable locale contenant le script BallScript
 		BallScript ball = collision.gameObject.GetComponent<BallScript>();
-		if(ball == null) {
-			Debug.LogError(string.Format ("The BallScript can't be obtained in the BreadmillScript of {0}", this.gameObject.name));
-		} else {
+		if(ball != null) {
 			// Variable locale contenant la velocité de la bille
 			Vector3 velocity = collision.gameObject.rigidbody.velocity;
 			// Variables locales permettant de savoir si la bille peut être poussée dans chacune des direction

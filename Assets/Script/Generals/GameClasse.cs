@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 /// <summary>
 /// Classe du jeu
@@ -13,6 +12,8 @@ public class GameClasse {
     private float _gapTime = 0f;
 	// Temps au début du jeu en seconde
     private float _startGameTime = 0f;
+	// Temps à la fin du niveau en seconde
+    private float _endLevelTime = 0f;
 	// Le nom du level en cours
 	private string _currentLevelName = Utils.SceneMenu;
 	// La gravité au début du niveau (pour la réinitialiser quand le level est terminé)
@@ -44,6 +45,16 @@ public class GameClasse {
 		}
 		private set {
 			this._score = value;
+			DisplayScoreAndTime.Instance.DisplayScore();
+		}
+	}
+	
+	/// <summary>
+	/// Permet d'obtenir le score sous forme de string
+	/// </summary>
+	public string FormatedScore {
+		get {
+			return Utils.FormatScore(this.Score);
 		}
 	}
 	
@@ -84,6 +95,18 @@ public class GameClasse {
 	}
 	
 	/// <summary>
+	/// Propriété liée au temps à la fin du niveau
+	/// </summary>
+	public float EndLevelTime {
+		get {
+			return this._endLevelTime;
+		}
+		private set {
+			this._endLevelTime = value;
+		}
+	}
+	
+	/// <summary>
 	/// Propriété liée au temps de jeu
 	/// </summary>
 	public Vector3 OriginalGravity {
@@ -100,7 +123,20 @@ public class GameClasse {
 	/// </summary>
 	public float GameTime {
 		get {
-			return Time.time - this.StartGameTime + this.GapTime;
+			if(this.EndLevelTime == 0) {
+				return Time.time - this.StartGameTime + this.GapTime;
+			} else {
+				return this.EndLevelTime;
+			}
+		}
+	}
+	
+	/// <summary>
+	/// Permet d'obtenir le temps de jeu total sous la forme "H:MM:SS.SSS"
+	/// </summary>
+	public string FormatedGameTime {
+		get {
+			return Utils.FormatTime(this.GameTime);
 		}
 	}
 	
@@ -125,6 +161,7 @@ public class GameClasse {
 		this.OriginalGravity = Physics.gravity;
 		this.Score = 0;
 		this.GapTime = 0;
+		this.EndLevelTime = 0f;
 		this.StartGameTime = Time.time;
 	}
 	
@@ -148,7 +185,47 @@ public class GameClasse {
 	/// Méthode à appeler quand le level est réussi
 	/// </summary>
 	public void LevelSolved() {
+		this.EndLevelTime = this.GameTime;
 		Physics.gravity = this.OriginalGravity;
+		this.SaveScoreAndTime();
 		Application.LoadLevel(Utils.SceneLevelSolved);
+	}
+	
+	private void SaveScoreAndTime() {
+		int[] bestScores = new int[3];
+		float[] bestTimes = new float[3];
+		
+		int currentScore = this.Score;
+		float currentGameTime = this.GameTime;
+		
+		bestScores[0] = PlayerPrefs.GetInt(string.Concat("BestScore",GameClasse.Instance.CurrentLevelName));
+		bestScores[1] = PlayerPrefs.GetInt(string.Concat("SecondBestScore",GameClasse.Instance.CurrentLevelName));
+		bestScores[2] = PlayerPrefs.GetInt(string.Concat("ThirdBestScore",GameClasse.Instance.CurrentLevelName));
+		
+		bestTimes[0] = PlayerPrefs.GetFloat(string.Concat("BestTime",GameClasse.Instance.CurrentLevelName));
+		bestTimes[1] = PlayerPrefs.GetFloat(string.Concat("SecondBestTime",GameClasse.Instance.CurrentLevelName));
+		bestTimes[2] = PlayerPrefs.GetFloat(string.Concat("ThirdBestTime",GameClasse.Instance.CurrentLevelName));
+		
+		if(!PlayerPrefs.HasKey(string.Concat("BestScore",GameClasse.Instance.CurrentLevelName)) || currentScore >= bestScores[0]) {
+			PlayerPrefs.SetInt(string.Concat("ThirdBestScore",GameClasse.Instance.CurrentLevelName), bestScores[1]);
+			PlayerPrefs.SetInt(string.Concat("SecondBestScore",GameClasse.Instance.CurrentLevelName), bestScores[0]);
+			PlayerPrefs.SetInt(string.Concat("BestScore",GameClasse.Instance.CurrentLevelName), currentScore);
+		} else if(!PlayerPrefs.HasKey(string.Concat("SecondBestScore",GameClasse.Instance.CurrentLevelName)) || currentScore >= bestScores[1]) {
+			PlayerPrefs.SetInt(string.Concat("ThirdBestScore",GameClasse.Instance.CurrentLevelName), bestScores[1]);
+			PlayerPrefs.SetInt(string.Concat("SecondBestScore",GameClasse.Instance.CurrentLevelName), currentScore);
+		} else if(!PlayerPrefs.HasKey(string.Concat("ThirdBestScore",GameClasse.Instance.CurrentLevelName)) || currentScore >= bestScores[2]) {
+			PlayerPrefs.SetInt(string.Concat("ThirdBestScore",GameClasse.Instance.CurrentLevelName), currentScore);
+		}
+		
+		if(!PlayerPrefs.HasKey(string.Concat("BestTime",GameClasse.Instance.CurrentLevelName)) || currentGameTime <= bestTimes[0]) {
+			PlayerPrefs.SetFloat(string.Concat("ThirdBestTime",GameClasse.Instance.CurrentLevelName), bestTimes[1]);
+			PlayerPrefs.SetFloat(string.Concat("SecondBestTime",GameClasse.Instance.CurrentLevelName), bestTimes[0]);
+			PlayerPrefs.SetFloat(string.Concat("BestTime",GameClasse.Instance.CurrentLevelName), currentGameTime);
+		} else if(!PlayerPrefs.HasKey(string.Concat("SecondBestTime",GameClasse.Instance.CurrentLevelName)) || currentGameTime <= bestTimes[1]) {
+			PlayerPrefs.SetFloat(string.Concat("ThirdBestTime",GameClasse.Instance.CurrentLevelName), bestTimes[1]);
+			PlayerPrefs.SetFloat(string.Concat("SecondBestTime",GameClasse.Instance.CurrentLevelName), currentGameTime);
+		} else if(!PlayerPrefs.HasKey(string.Concat("ThirdBestTime",GameClasse.Instance.CurrentLevelName)) || currentGameTime <= bestTimes[2]) {
+			PlayerPrefs.SetFloat(string.Concat("ThirdBestTime",GameClasse.Instance.CurrentLevelName), currentGameTime);
+		}
 	}
 }
