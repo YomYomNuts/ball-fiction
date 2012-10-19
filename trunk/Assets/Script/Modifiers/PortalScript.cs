@@ -27,7 +27,7 @@ public class PortalScript : MonoBehaviour{
 	}
 	
 	// Collision pour faire bouger la bille
-	void OnCollisionEnter(Collision collision) {
+	void OnTriggerEnter(Collider collision) {
 		if(this._otherEnd != null) {
 			if(this._isActivated) {
 				Vector3 newPosition = this._otherEnd.gameObject.transform.position;
