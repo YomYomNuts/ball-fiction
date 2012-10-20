@@ -69,48 +69,57 @@ public class TreadmillScript : MonoBehaviour {
 	/// Inverse la direction du tapis
 	/// </summary>
 	public void InverseDirection() {
-			if(this._ballDirection == Utils.Direction.Forward) {
-				this._ballDirection = Utils.Direction.Back;
-				if(!this._ignoreMaximalForceBall) {
-					this.renderer.material.mainTexture = Resources.Load("Data/back_arrow") as Texture;
-				} else {
-					this.renderer.material.mainTexture = Resources.Load("Data/back_arrow_accelerator") as Texture;
-				}
-			} else if(this._ballDirection == Utils.Direction.Back) {
-				this._ballDirection = Utils.Direction.Forward;
-				if(!this._ignoreMaximalForceBall) {
-					this.renderer.material.mainTexture = Resources.Load("Data/forward_arrow") as Texture;
-				} else {
-					this.renderer.material.mainTexture = Resources.Load("Data/forward_arrow_accelerator") as Texture;
-				}
-			} else if(this._ballDirection == Utils.Direction.Left) {
-				this._ballDirection = Utils.Direction.Right;
-//				if(!this._IgnoreMaximalForceBall) {
-//					this.renderer.material.mainTexture = Resources.Load("Data/left_arrow") as Texture;
-//				} else {
-//					this.renderer.material.mainTexture = Resources.Load("Data/left_arrow_accelerator") as Texture;
-//				}
-			} else if(this._ballDirection == Utils.Direction.Right) {
-				this._ballDirection = Utils.Direction.Left;
-//				if(!this._IgnoreMaximalForceBall) {
-//					this.renderer.material.mainTexture = Resources.Load("Data/right_arrow") as Texture;
-//				} else {
-//					this.renderer.material.mainTexture = Resources.Load("Data/right_arrow_accelerator") as Texture;
-//				}
-			} else if(this._ballDirection == Utils.Direction.Up) {
-				this._ballDirection = Utils.Direction.Down;
-//				if(!this._IgnoreMaximalForceBall) {
-					this.renderer.material.mainTexture = Resources.Load("Data/up_arrow") as Texture;
-//				} else {
-//					this.renderer.material.mainTexture = Resources.Load("Data/up_arrow_accelerator") as Texture;
-//				}
-			} else if(this._ballDirection == Utils.Direction.Down) {
-				this._ballDirection = Utils.Direction.Up;
-//				if(!this._IgnoreMaximalForceBall) {
-//					this.renderer.material.mainTexture = Resources.Load("Data/down_arrow") as Texture;
-//				} else {
-//					this.renderer.material.mainTexture = Resources.Load("Data/down_arrow_accelerator") as Texture;
-//				}
+		Transform theAppearanceChild = null;
+		foreach(Transform child in this.transform) {
+			if(child.name.Contains("Appearance")) {
+				theAppearanceChild = child;
 			}
+		}
+		if(theAppearanceChild == null) {
+			return;
+		}
+		if(this._ballDirection == Utils.Direction.Forward) {
+			this._ballDirection = Utils.Direction.Back;
+			if(!this._ignoreMaximalForceBall) {
+				theAppearanceChild.renderer.material.mainTexture = Resources.Load("Data/back_arrow") as Texture;
+			} else {
+				theAppearanceChild.renderer.material.mainTexture = Resources.Load("Data/back_arrow_accelerator") as Texture;
+			}
+		} else if(this._ballDirection == Utils.Direction.Back) {
+			this._ballDirection = Utils.Direction.Forward;
+			if(!this._ignoreMaximalForceBall) {
+				theAppearanceChild.renderer.material.mainTexture = Resources.Load("Data/forward_arrow") as Texture;
+			} else {
+				theAppearanceChild.renderer.material.mainTexture = Resources.Load("Data/forward_arrow_accelerator") as Texture;
+			}
+		} else if(this._ballDirection == Utils.Direction.Left) {
+			this._ballDirection = Utils.Direction.Right;
+			if(!this._ignoreMaximalForceBall) {
+				theAppearanceChild.renderer.material.mainTexture = Resources.Load("Data/left_arrow") as Texture;
+			} else {
+				theAppearanceChild.renderer.material.mainTexture = Resources.Load("Data/left_arrow_accelerator") as Texture;
+			}
+		} else if(this._ballDirection == Utils.Direction.Right) {
+			this._ballDirection = Utils.Direction.Left;
+			if(!this._ignoreMaximalForceBall) {
+				theAppearanceChild.renderer.material.mainTexture = Resources.Load("Data/right_arrow") as Texture;
+			} else {
+				theAppearanceChild.renderer.material.mainTexture = Resources.Load("Data/right_arrow_accelerator") as Texture;
+			}
+		} else if(this._ballDirection == Utils.Direction.Up) {
+			this._ballDirection = Utils.Direction.Down;
+			if(!this._ignoreMaximalForceBall) {
+			theAppearanceChild.renderer.material.mainTexture = Resources.Load("Data/up_arrow") as Texture;
+			} else {
+				theAppearanceChild.renderer.material.mainTexture = Resources.Load("Data/up_arrow_accelerator") as Texture;
+			}
+		} else if(this._ballDirection == Utils.Direction.Down) {
+			this._ballDirection = Utils.Direction.Up;
+			if(!this._ignoreMaximalForceBall) {
+				theAppearanceChild.renderer.material.mainTexture = Resources.Load("Data/down_arrow") as Texture;
+			} else {
+				theAppearanceChild.renderer.material.mainTexture = Resources.Load("Data/down_arrow_accelerator") as Texture;
+			}
+		}
 	}
 }

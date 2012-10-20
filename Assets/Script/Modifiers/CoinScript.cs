@@ -25,7 +25,7 @@ public class CoinScript : PonctualButtonScript {
 	// Action effectuée lorsque le bouton est activé
 	override protected void ActionWhenActivated() {
 		GameClasse.Instance.IncrementScore(this._valueCoins);
-		this.gameObject.active = false;
+		this.gameObject.SetActiveRecursively(false);
 	}
 	// Action effectuée lorsque le bouton est activé
 	override protected void ActionWhenNonActivated() {}

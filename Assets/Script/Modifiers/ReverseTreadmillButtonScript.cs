@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 /// Script général de comportement d'un bouton qui est activé/désactivé quand on appuie dessus
 /// </summary>
-public class InverseTreadmillButtonScript : PonctualButtonScript {
+public class ReverseTreadmillButtonScript : PonctualButtonScript {
 	/// <summary>
 	/// The breadmils which have to be inversed
 	/// </summary>
