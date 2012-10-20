@@ -10,10 +10,10 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2012
 		Month: 10
-		Day: 19
-		Hour: 20
-		Minute: 32
-		Second: 53
+		Day: 20
+		Hour: 02
+		Minute: 07
+		Second: 25
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins build 20070228"
@@ -21,7 +21,7 @@ FBXHeaderExtension:  {
 		FlagPLE: 0
 	}
 }
-CreationTime: "2012-10-19 20:32:53:000"
+CreationTime: "2012-10-20 02:07:25:000"
 Creator: "Blender version 2.63 (sub 0)"
 
 ; Object definitions
@@ -136,7 +136,7 @@ Objects:  {
 		CameraName: 100
 		CameraIndexName:
 	}
-	Model: "Model::Torus_001", "Mesh" {
+	Model: "Model::Portal", "Mesh" {
 		Version: 232
 		Properties60:  {
 			Property: "QuaternionInterpolate", "bool", "",0
@@ -3510,18 +3510,18 @@ Objects:  {
 		AudioColor: 0,1,0
 		CameraOrthoZoom: 1
 	}
-	Material: "Material::BackgroundPortal", "" {
+	Material: "Material::PortalBackground", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
 		Properties60:  {
 			Property: "ShadingModel", "KString", "", "Lambert"
 			Property: "MultiLayer", "bool", "",0
-			Property: "EmissiveColor", "ColorRGB", "",0.0204,0.0190,0.0135
+			Property: "EmissiveColor", "ColorRGB", "",0.0000,0.0000,0.0000
 			Property: "EmissiveFactor", "double", "",0.0000
 			Property: "AmbientColor", "ColorRGB", "",0.0000,0.0000,0.0000
 			Property: "AmbientFactor", "double", "",1.0000
-			Property: "DiffuseColor", "ColorRGB", "",0.0204,0.0190,0.0135
+			Property: "DiffuseColor", "ColorRGB", "",0.0000,0.0000,0.0000
 			Property: "DiffuseFactor", "double", "",0.8000
 			Property: "Bump", "Vector3D", "",0,0,0
 			Property: "TransparentColor", "ColorRGB", "",1,1,1
@@ -3540,18 +3540,18 @@ Objects:  {
 			Property: "Reflectivity", "double", "",0
 		}
 	}
-	Material: "Material::Portal", "" {
+	Material: "Material::PortalFace", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
 		Properties60:  {
 			Property: "ShadingModel", "KString", "", "Lambert"
 			Property: "MultiLayer", "bool", "",0
-			Property: "EmissiveColor", "ColorRGB", "",0.7134,0.0829,0.8000
+			Property: "EmissiveColor", "ColorRGB", "",0.8000,0.0000,0.5226
 			Property: "EmissiveFactor", "double", "",0.0000
 			Property: "AmbientColor", "ColorRGB", "",0.0000,0.0000,0.0000
 			Property: "AmbientFactor", "double", "",1.0000
-			Property: "DiffuseColor", "ColorRGB", "",0.7134,0.0829,0.8000
+			Property: "DiffuseColor", "ColorRGB", "",0.8000,0.0000,0.5226
 			Property: "DiffuseFactor", "double", "",0.8000
 			Property: "Bump", "Vector3D", "",0,0,0
 			Property: "TransparentColor", "ColorRGB", "",1,1,1
@@ -3563,7 +3563,7 @@ Objects:  {
 			Property: "ReflectionFactor", "double", "",1
 			Property: "Emissive", "ColorRGB", "",0,0,0
 			Property: "Ambient", "ColorRGB", "",0.0,0.0,0.0
-			Property: "Diffuse", "ColorRGB", "",0.7,0.1,0.8
+			Property: "Diffuse", "ColorRGB", "",0.8,0.0,0.5
 			Property: "Specular", "ColorRGB", "",1.0,1.0,1.0
 			Property: "Shininess", "double", "",9.6
 			Property: "Opacity", "double", "",1.0
@@ -3607,7 +3607,7 @@ Objects:  {
 		}
 		NbPoseNodes: 1
 		PoseNode:  {
-			Node: "Model::Torus_001"
+			Node: "Model::Portal"
 			Matrix: 1.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,-1.000000000000000,0.000000000000000,0.000000000000000,1.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,1.000000000000000
 		}
 	}
@@ -3629,7 +3629,7 @@ Objects:  {
 ;------------------------------------------------------------------
 
 Relations:  {
-	Model: "Model::Torus_001", "Mesh" {
+	Model: "Model::Portal", "Mesh" {
 	}
 	Model: "Model::Producer Perspective", "Camera" {
 	}
@@ -3647,9 +3647,9 @@ Relations:  {
 	}
 	Model: "Model::Camera Switcher", "CameraSwitcher" {
 	}
-	Material: "Material::BackgroundPortal", "" {
+	Material: "Material::PortalBackground", "" {
 	}
-	Material: "Material::Portal", "" {
+	Material: "Material::PortalFace", "" {
 	}
 	Material: "Material::unnamed", "" {
 	}
@@ -3659,9 +3659,9 @@ Relations:  {
 ;------------------------------------------------------------------
 
 Connections:  {
-	Connect: "OO", "Model::Torus_001", "Model::Scene"
-	Connect: "OO", "Material::BackgroundPortal", "Model::Torus_001"
-	Connect: "OO", "Material::Portal", "Model::Torus_001"
+	Connect: "OO", "Model::Portal", "Model::Scene"
+	Connect: "OO", "Material::PortalBackground", "Model::Portal"
+	Connect: "OO", "Material::PortalFace", "Model::Portal"
 }
 ;Takes and animation section
 ;----------------------------------------------------
@@ -3675,7 +3675,7 @@ Takes:  {
 
 		;Models animation
 		;----------------------------------------------------
-		Model: "Model::Torus_001" {
+		Model: "Model::Portal" {
 			Version: 1.1
 			Channel: "Transform" {
 				Channel: "T" {
