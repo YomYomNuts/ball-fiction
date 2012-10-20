@@ -11,14 +11,22 @@ public class HammerScript : MonoBehaviour {
 	/// La puissance du marche, détermine le nombre de point qu'il enlève
 	/// </summary>
 	public int _hammerPower = 5;
+	
+	public GameObject _theBall;
 
 	// Use this for initialization
-	void Start () {}
+	void Start () {
+		if(this._theBall == null) {
+			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {}
 	
 	void OnTriggerEnter(Collider collider) {
-		GameClasse.Instance.IncrementScore(-this._hammerPower);
+		if(collider == this._theBall) {
+			GameClasse.Instance.IncrementScore(-this._hammerPower);
+		}
 	}
 }
