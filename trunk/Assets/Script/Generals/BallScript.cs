@@ -18,12 +18,12 @@ public class BallScript : MonoBehaviour {
 	/// <summary>
 	/// La hauteur de la caméra par rapport à la bille
 	/// </summary>
-	public float _hauteurCamera = 4f;
+	public float _hauteurCamera = 8f;
 	
 	/// <summary>
 	/// Le recul de la caméra par rapport à la bille
 	/// </summary>
-	public float _reculCamera = 3f;
+	public float _reculCamera = 8f;
 	
 	// Use this for initialization
 	void Start () {

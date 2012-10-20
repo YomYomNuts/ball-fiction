@@ -5,11 +5,17 @@ using System.Collections;
 /// Script de comportement d'un bouton avec timer
 /// </summary>
 public class TimedButtonScript : MonoBehaviour {
-	// Permet de savoir si le bouton est activé ou désactivé
-	public bool _isActivated = false;
 	// Le temps passé depuis l'activation
 	private float _currentTime = 0.0f;
 	
+	/// <summary>
+	/// La bille
+	/// </summary>
+	public GameObject _theBall;
+	/// <summary>
+	/// Permet de savoir si le bouton est activé ou désactivé
+	/// </summary>
+	public bool _isActivated = false;
 	/// <summary>
 	/// True si on veut que l'activation se déroule OnEnter, false si on veut OnExit
 	/// </summary>
@@ -59,21 +65,23 @@ public class TimedButtonScript : MonoBehaviour {
 	}
 	
 	// Trigger pour activer le boutton
-	void OnTriggerEnter(Collider collision) {
+	void OnTriggerEnter(Collider collider) {
 		if(this._onEnter) {
-			this.ActivateTheButton();
+			this.ActivateTheButton(collider);
 		}
 	}
 	
 	// Trigger pour activer le boutton
-	void OnTriggerExit(Collider collision) {
+	void OnTriggerExit(Collider collider) {
 		if(! this._onEnter) {
-			this.ActivateTheButton();
+			this.ActivateTheButton(collider);
 		}
 	}
 	
-	private void ActivateTheButton() {
-		this._currentTime = 0.0f;
-		this.IsActivated = true;
+	private void ActivateTheButton(Collider collider) {
+		if(this._theBall == collider.gameObject) {
+			this._currentTime = 0.0f;
+			this.IsActivated = true;
+		}
 	}
 }
