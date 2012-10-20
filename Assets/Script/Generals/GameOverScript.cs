@@ -29,7 +29,7 @@ public class GameOverScript : MonoBehaviour {
     }
 	
 	// Collision pour finir le niveau
-	void OnTriggerEnter(Collider collision) {
+	void OnTriggerEnter(Collider collider) {
 		this._isSolved = true;
 	}
 	

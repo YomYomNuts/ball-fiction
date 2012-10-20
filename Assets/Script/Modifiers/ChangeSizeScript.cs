@@ -4,21 +4,13 @@ using System.Collections;
 /// Script de comportement de l'aggrandissement de la bille
 /// </summary>
 public class ChangeSizeScript : TimedButtonScript {
-	/// <summary>
-	/// La bille
-	/// </summary>
-	public GameObject _theBall;
+	// Le scale de base de la bille
+	private Vector3 _normalScale;
 	
 	/// <summary>
 	/// Le coefficient par lequel le scale est multiplié
 	/// </summary>
 	public float _coeff = 2f;
-	
-	/// <summary>
-	/// Le scale de base de la bille
-	/// </summary>
-	private Vector3 _normalScale;
-	
 	/// <summary>
 	/// Permet de savoir si la taille de la bille a déjà été changé
 	/// </summary>

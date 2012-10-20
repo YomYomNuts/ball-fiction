@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 /// Script de comportement des pièces
 /// </summary>
-public class CoinScript : MonoBehaviour {
+public class CoinScript : PonctualButtonScript {
 	/// <summary>
 	/// Valeur de la pièce
 	/// </summary>
@@ -12,7 +12,9 @@ public class CoinScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		if(this._theBall == null) {
+			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
+		}
 	}
 	
 	// Update is called once per frame
@@ -20,10 +22,11 @@ public class CoinScript : MonoBehaviour {
 	
 	}
 	
-	// Trigger pour augmenter le score
-	void OnTriggerEnter(Collider collision) {
-		// On incrémente le score et on fait disparaître la pièce
+	// Action effectuée lorsque le bouton est activé
+	override protected void ActionWhenActivated() {
 		GameClasse.Instance.IncrementScore(this._valueCoins);
 		this.gameObject.active = false;
 	}
+	// Action effectuée lorsque le bouton est activé
+	override protected void ActionWhenNonActivated() {}
 }

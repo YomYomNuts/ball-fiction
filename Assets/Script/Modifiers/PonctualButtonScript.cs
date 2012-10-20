@@ -6,15 +6,19 @@ using System.Collections;
 /// </summary>
 abstract public class PonctualButtonScript : MonoBehaviour {
 	/// <summary>
+	/// La bille
+	/// </summary>
+	public GameObject _theBall;
+	/// <summary>
 	/// True si on veut que l'activation se déroule OnEnter, false si on veut OnExit
 	/// </summary>
     public bool _onEnter = true;
-	
-	// Permet de savoir si le bouton est activé ou désactivé
-	public bool _isActivated = false;
-	
 	/// <summary>
-	/// Propriété liée à l'activation ou non du bouton
+	/// Permet de savoir si le bouton est activé ou désactivé
+	/// </summary>
+	public bool _isActivated = false;
+	/// <summary>
+	/// Propriété liée à l'activation du bouton
 	/// </summary>
 	public bool IsActivated {
 		get {
@@ -32,25 +36,27 @@ abstract public class PonctualButtonScript : MonoBehaviour {
 	void Update () {}
 	
 	// Trigger pour activer le boutton
-	void OnTriggerEnter(Collider collision) {
+	void OnTriggerEnter(Collider collider) {
 		if(this._onEnter) {
-			this.DoAction();
+			this.DoAction(collider);
 		}
 	}
 	
 	// Trigger pour activer le boutton
-	void OnTriggerExit(Collider collision) {
+	void OnTriggerExit(Collider collider) {
 		if(! this._onEnter) {
-			this.DoAction();
+			this.DoAction(collider);
 		}
 	}
 	
-	public void DoAction() {
-		this.IsActivated = !this.IsActivated;
-		if(this.IsActivated) {
-			this.ActionWhenActivated();
-		} else {
-			this.ActionWhenNonActivated();
+	private void DoAction(Collider collider) {
+		if(this._theBall == collider.gameObject) {
+			this.IsActivated = !this.IsActivated;
+			if(this.IsActivated) {
+				this.ActionWhenActivated();
+			} else {
+				this.ActionWhenNonActivated();
+			}
 		}
 	}
 	

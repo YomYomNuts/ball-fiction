@@ -27,13 +27,13 @@ public class PortalScript : MonoBehaviour{
 	}
 	
 	// Collision pour faire bouger la bille
-	void OnTriggerEnter(Collider collision) {
+	void OnTriggerEnter(Collider collider) {
 		if(this._otherEnd != null) {
 			if(this._isActivated) {
 				Vector3 newPosition = this._otherEnd.gameObject.transform.position;
-				newPosition.y = collision.gameObject.transform.position.y;
+				newPosition.y = collider.gameObject.transform.position.y;
 				// Changement de la position de la bille avec le delta
-				collision.gameObject.transform.position = newPosition;
+				collider.gameObject.transform.position = newPosition;
 				
 				// Vérification si l'autre extremité est un portail
 				if(this._otherEnd.GetComponent<PortalScript>() != null) {
@@ -45,7 +45,7 @@ public class PortalScript : MonoBehaviour{
 	}
 	
 	// Trigger pour modifier l'état du portail
-	void OnTriggerExit(Collider collision) {
+	void OnTriggerExit(Collider collider) {
 		if(this._hasToBeReactivated) {
 			this._isActivated = true;
 		}

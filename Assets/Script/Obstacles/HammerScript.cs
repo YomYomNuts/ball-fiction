@@ -18,7 +18,7 @@ public class HammerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {}
 	
-	void OnTriggerEnter(Collider collision) {
+	void OnTriggerEnter(Collider collider) {
 		GameClasse.Instance.IncrementScore(-this._hammerPower);
 	}
 }

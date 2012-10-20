@@ -12,6 +12,9 @@ public class InverseTreadmillButtonScript : PonctualButtonScript {
 	
 	// Use this for initialization
 	void Start () {
+		if(this._theBall == null) {
+			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
+		}
 		if(this._theTreadmills == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("treadmills", this.GetType().ToString(), this.gameObject.name);
 		}
