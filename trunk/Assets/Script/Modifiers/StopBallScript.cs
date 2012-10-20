@@ -15,6 +15,10 @@ public class StopBallScript : PonctualButtonScript {
 	// Update is called once per frame
 	void Update () {}
 	
+//	void OnTriggerStay(Collider collider) {
+//		this.ActionWhenActivated();
+//	}
+	
 	override protected void ActionWhenActivated() {
 		if(this._theBall != null) {
 			this._theBall.rigidbody.velocity = Vector3.zero;
