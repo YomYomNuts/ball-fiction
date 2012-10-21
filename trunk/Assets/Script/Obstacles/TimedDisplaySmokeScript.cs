@@ -3,7 +3,7 @@ using System.Collections;
 /// <summary>
 /// Script du bouton qui affiche la fumée
 /// </summary>
-public class DisplaySmokeScript : TimedButtonScript {
+public class TimedDisplaySmokeScript : TimedButtonScript {
 	/// <summary>
 	/// La fumée à faire apparaître. Cela peut être un objet qui affiche de la fumée ou le parent de plusieurs objets qui en affichent
 	/// </summary>

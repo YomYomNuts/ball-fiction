@@ -4,15 +4,11 @@ using System.Collections;
 /// <summary>
 /// Script général de comportement d'un bouton qui est activé/désactivé quand on appuie dessus
 /// </summary>
-abstract public class PonctualButtonScript : MonoBehaviour {
+abstract public class OnOffButtonScript : MonoBehaviour {
 	/// <summary>
 	/// La bille
 	/// </summary>
 	public GameObject _theBall;
-	/// <summary>
-	/// Le bouton lié à celui-ci, il sera réactivable quand celui-ci sera activé
-	/// </summary>
-	public GameObject _linkedButton;
 	/// <summary>
 	/// True si on veut que l'activation se déroule OnEnter, false si on veut OnExit
 	/// </summary>
@@ -32,6 +28,12 @@ abstract public class PonctualButtonScript : MonoBehaviour {
 			this._isActivated = value;
 		}
 	}
+
+	// Use this for initialization
+	void Start () {}
+	
+	// Update is called once per frame
+	void Update () {}
 	
 	// Trigger pour activer le boutton
 	void OnTriggerEnter(Collider collider) {
@@ -48,17 +50,17 @@ abstract public class PonctualButtonScript : MonoBehaviour {
 	}
 	
 	private void DoAction(Collider collider) {
-		if(!this.IsActivated && this._theBall == collider.gameObject) {
-			this.IsActivated = true;
-			this.ActionWhenActivated();
-			if(this._linkedButton != null) {
-				PonctualButtonScript scriptOfTheLinkedButton = this._linkedButton.GetComponent<PonctualButtonScript>();
-				if(scriptOfTheLinkedButton != null) {
-					scriptOfTheLinkedButton.IsActivated = false;
-				}
+		if(this._theBall == collider.gameObject) {
+			this.IsActivated = !this.IsActivated;
+			if(this.IsActivated) {
+				this.ActionWhenActivated();
+			} else {
+				this.ActionWhenNonActivated();
 			}
 		}
 	}
 	
 	abstract protected void ActionWhenActivated();
+	
+	abstract protected void ActionWhenNonActivated();
 }

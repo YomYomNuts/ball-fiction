@@ -3,11 +3,14 @@ using System.Collections;
 /// <summary>
 /// Script de comportement de l'aggrandissement de la bille
 /// </summary>
-public class DisappearScript : TimedButtonScript {
+public class TimedAppearDisappearScript : TimedButtonScript {
+	// Permet de savoir si la bille est invisible
+	private bool _isChanged = false;
+	
 	/// <summary>
-	/// Permet de savoir si la bille est invisible
+	/// Permet de déterminer s'il s'agit d'un bouton pour aparaître (si false, c'est un bouton pour disparaître)
 	/// </summary>
-	public bool _isInvisible = false;
+	public bool _isAppearButton = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -19,13 +22,13 @@ public class DisappearScript : TimedButtonScript {
 	void Update() {
 		base.UpdateState(); // Mise à jour du statut avec la méthode du parent
 		if(this._theBall != null) {
-			if(this.IsActivated && !this._isInvisible) {
-				this._theBall.renderer.enabled = false;
-				this._isInvisible = true; // On enregistre le fait que la taille a changé
+			if(this.IsActivated && !this._isChanged) {
+				this._theBall.renderer.enabled = _isAppearButton;
+				this._isChanged = true; // On enregistre le fait que la taille a changé
 				// Le bouton se désactive à la fin de l'animation (voir TimedButtonScript)
-			} else if(!this.IsActivated && this._isInvisible) {
-				this._theBall.renderer.enabled = true;
-				this._isInvisible = false;
+			} else if(!this.IsActivated && this._isChanged) {
+				this._theBall.renderer.enabled = !_isAppearButton;
+				this._isChanged = false;
 			}
 		}
 	}

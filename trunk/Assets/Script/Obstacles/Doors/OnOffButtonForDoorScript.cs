@@ -4,7 +4,7 @@ using System;
 /// <summary>
 /// Script de comportement d'une porte qui s'ouvre à la première activation du bouton puis se ferme à la seconde
 /// </summary>
-public class PonctualButtonForDoorScript : PonctualButtonScript {
+public class OnOffButtonForDoorScript : OnOffButtonScript {
 	/// <summary>
 	/// La position maximale pour la porte
 	/// </summary>
