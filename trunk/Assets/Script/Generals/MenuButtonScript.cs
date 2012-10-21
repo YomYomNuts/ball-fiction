@@ -15,12 +15,12 @@ public class MenuButtonScript : MonoBehaviour {
 	public float _coeff = 1.5f;
 	
 	// Les cubes qui tournent autour du bouton
-	private GameObject _cubes;
+	private GameObject _animations;
 	
 	// Use this for initialization
 	void Start () {
-		this._cubes = this.transform.parent.FindChild("Cubes").gameObject;
-		this._cubes.SetActiveRecursively(false);
+		this._animations = this.transform.parent.FindChild("Animations").gameObject;
+		this._animations.SetActiveRecursively(false);
 		//Ajout du listener
 		this.GetComponent<ClickListenerScript>().OnClicked += new ClickListenerScript.ActionEventClick(
 		() => {
@@ -51,14 +51,14 @@ public class MenuButtonScript : MonoBehaviour {
 	void Update () {}
 	
 	void OnMouseEnter() {
-		this._cubes.SetActiveRecursively(true);
+		this._animations.SetActiveRecursively(true);
 		this.transform.parent.gameObject.animation.enabled = false;
 		this.transform.parent.parent.localScale *= this._coeff;
 		this.light.enabled = true;
 	}
 	
 	void OnMouseExit() {
-		this._cubes.SetActiveRecursively(false);
+		this._animations.SetActiveRecursively(false);
 		this.transform.parent.gameObject.animation.enabled = true;
 		this.transform.parent.parent.localScale /= this._coeff;
 		this.light.enabled = false;
