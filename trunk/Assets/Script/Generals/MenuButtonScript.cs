@@ -9,6 +9,10 @@ public class MenuButtonScript : MonoBehaviour {
 	/// Type du bouton (détermine de l'action à effectuer)
 	/// </summary>
 	public Utils.MenuButton _buttonType = Utils.MenuButton.Quitter;
+	/// <summary>
+	/// The _coeff.
+	/// </summary>
+	public float _coeff = 1.5f;
 	
 	// Les cubes qui tournent autour du bouton
 	private GameObject _cubes;
@@ -48,9 +52,43 @@ public class MenuButtonScript : MonoBehaviour {
 	
 	void OnMouseEnter() {
 		this._cubes.SetActiveRecursively(true);
+		this.transform.parent.gameObject.animation.enabled = false;
+		this.transform.parent.parent.localScale *= this._coeff;
+		this.light.enabled = true;
 	}
 	
 	void OnMouseExit() {
 		this._cubes.SetActiveRecursively(false);
+		this.transform.parent.gameObject.animation.enabled = true;
+		this.transform.parent.parent.localScale /= this._coeff;
+		this.light.enabled = false;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
