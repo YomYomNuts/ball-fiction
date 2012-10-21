@@ -25,7 +25,7 @@ public class HammerScript : MonoBehaviour {
 	void Update () {}
 	
 	void OnTriggerEnter(Collider collider) {
-		if(collider == this._theBall) {
+		if(collider.gameObject == this._theBall) {
 			GameClasse.Instance.IncrementScore(-this._hammerPower);
 		}
 	}
