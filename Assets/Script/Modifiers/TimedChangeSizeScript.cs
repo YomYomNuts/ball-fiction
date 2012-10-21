@@ -3,7 +3,7 @@ using System.Collections;
 /// <summary>
 /// Script de comportement de l'aggrandissement de la bille
 /// </summary>
-public class ChangeSizeScript : TimedButtonScript {
+public class TimedChangeSizeScript : TimedButtonScript {
 	// Le scale de base de la bille
 	private Vector3 _normalScale;
 	

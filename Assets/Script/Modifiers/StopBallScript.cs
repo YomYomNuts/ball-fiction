@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 /// Script général de comportement d'un bouton qui est activé/désactivé quand on appuie dessus
 /// </summary>
-public class StopBallScript : PonctualButtonScript {
+public class StopBallScript : OnOffButtonScript {
 	// Use this for initialization
 	void Start () {
 		if(this._theBall == null) {
