@@ -24,11 +24,11 @@ abstract public class PonctualButtonScript : MonoBehaviour {
 	/// <summary>
 	/// Propriété liée à l'activation du bouton
 	/// </summary>
-	public bool IsActivated {
+	virtual public bool IsActivated {
 		get {
 			return this._isActivated;
 		}
-		private set {
+		protected set {
 			this._isActivated = value;
 		}
 	}
