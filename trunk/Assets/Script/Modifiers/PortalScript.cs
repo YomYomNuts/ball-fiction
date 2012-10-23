@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 /// <summary>
 /// Script de comportement d'un portail
@@ -31,7 +32,6 @@ public class PortalScript : MonoBehaviour{
 		if(this._otherEnd != null) {
 			if(this._isActivated) {
 				Vector3 newPosition = this._otherEnd.gameObject.transform.position;
-				newPosition.y = collider.gameObject.transform.position.y;
 				// Changement de la position de la bille avec le delta
 				collider.gameObject.transform.position = newPosition;
 				
