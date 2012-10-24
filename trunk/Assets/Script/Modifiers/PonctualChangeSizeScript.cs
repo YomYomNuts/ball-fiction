@@ -37,24 +37,24 @@ public class PonctualChangeSizeScript : PonctualButtonScript {
 	
 	// Use this for initialization
 	void Start () {
-		if(this._theBall == null) {
+		if(this.TheBall == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		} else {
-			this._normalScale = this._theBall.transform.localScale; // on enregistre la taille normale
+			this._normalScale = this.TheBall.transform.localScale; // on enregistre la taille normale
 		}
 	}
 	
 	// Update is called once per frame
 	override protected void ActionWhenActivated() {
-		if(this._theBall != null) {
+		if(this.TheBall != null) {
 			if(this.IsActivated) {
 				if(!this._isChanged) {
 					if(this._isBasedOnNormalScale) {
-						this._theBall.transform.localScale = this._normalScale * this._coeff; // On change la taille
+						this.TheBall.transform.localScale = this._normalScale * this._coeff; // On change la taille
 					} else {
-						this._theBall.transform.localScale *= this._coeff; // On change la taille
+						this.TheBall.transform.localScale *= this._coeff; // On change la taille
 					}
-					if(this._theBall.transform.localScale == this._normalScale*this._coeff) {
+					if(this.TheBall.transform.localScale == this._normalScale*this._coeff) {
 						this._isChanged = true; // On enregistre le fait que la taille a changé
 					} else {
 						this.IsActivated = false;

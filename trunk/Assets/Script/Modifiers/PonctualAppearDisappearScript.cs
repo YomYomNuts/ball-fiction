@@ -11,15 +11,15 @@ public class PonctualAppearDisappearScript : PonctualButtonScript {
 	
 	// Use this for initialization
 	void Start () {
-		if(this._theBall == null) {
+		if(this.TheBall == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
 	// Update is called once per frame
 	override protected void ActionWhenActivated() {
-		if(this._theBall != null) {
+		if(this.TheBall != null) {
 			if(this.IsActivated) {
-				this._theBall.renderer.enabled = _isAppearButton;
+				this.TheBall.renderer.enabled = _isAppearButton;
 			}
 		}
 	}

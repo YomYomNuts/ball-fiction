@@ -13,10 +13,19 @@ public class HammerScript : MonoBehaviour {
 	public int _hammerPower = 5;
 	
 	public GameObject _theBall;
+	
+	public GameObject TheBall {
+		get {
+			if(this._theBall == null) {
+				this._theBall = BallScript.Instance.gameObject;
+			}
+			return this._theBall;
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
-		if(this._theBall == null) {
+		if(this.TheBall == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
@@ -25,7 +34,7 @@ public class HammerScript : MonoBehaviour {
 	void Update () {}
 	
 	void OnTriggerEnter(Collider collider) {
-		if(collider.gameObject == this._theBall) {
+		if(collider.gameObject == this.TheBall) {
 			GameClasse.Instance.IncrementScore(-this._hammerPower);
 		}
 	}

@@ -23,7 +23,7 @@ public class Utils {
 	public enum MenuButton {
 		Menu,
 		RestartLevel,
-		Quitter,
+		Quit,
 		LevelDemo,
 		Level1,
 		Level2,

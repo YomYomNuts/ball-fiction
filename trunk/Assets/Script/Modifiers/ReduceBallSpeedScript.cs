@@ -7,7 +7,7 @@ using System.Collections;
 public class ReduceBallSpeedScript : OnOffButtonScript {
 	// Use this for initialization
 	void Start () {
-		if(this._theBall == null) {
+		if(this.TheBall == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
@@ -16,8 +16,8 @@ public class ReduceBallSpeedScript : OnOffButtonScript {
 	void Update () {}
 	
 	override protected void ActionWhenActivated() {
-		if(this._theBall != null) {
-			this._theBall.rigidbody.velocity = Vector3.zero;
+		if(this.TheBall != null) {
+			this.TheBall.rigidbody.velocity = Vector3.zero;
 		}
 	}
 	

@@ -34,7 +34,7 @@ public class TimedDisplaySmokeScript : TimedButtonScript {
 	
 	// Use this for initialization
 	void Start() {
-		if(this._theBall == null) {
+		if(this.TheBall == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
 		if(this._theSmoke == null) {

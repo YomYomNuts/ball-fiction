@@ -28,6 +28,14 @@ abstract public class OnOffButtonScript : MonoBehaviour {
 			this._isActivated = value;
 		}
 	}
+	public GameObject TheBall {
+		get {
+			if(this._theBall == null) {
+				this._theBall = BallScript.Instance.gameObject;
+			}
+			return this._theBall;
+		}
+	}
 
 	// Use this for initialization
 	void Start () {}
@@ -50,7 +58,7 @@ abstract public class OnOffButtonScript : MonoBehaviour {
 	}
 	
 	private void DoAction(Collider collider) {
-		if(this._theBall == collider.gameObject) {
+		if(this.TheBall == collider.gameObject) {
 			this.IsActivated = !this.IsActivated;
 			if(this.IsActivated) {
 				this.ActionWhenActivated();

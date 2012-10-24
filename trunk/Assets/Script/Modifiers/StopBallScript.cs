@@ -7,7 +7,7 @@ using System.Collections;
 public class StopBallScript : OnOffButtonScript {
 	// Use this for initialization
 	void Start () {
-		if(this._theBall == null) {
+		if(this.TheBall == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
@@ -20,9 +20,9 @@ public class StopBallScript : OnOffButtonScript {
 //	}
 	
 	override protected void ActionWhenActivated() {
-		if(this._theBall != null) {
-			this._theBall.rigidbody.velocity = Vector3.zero;
-			this._theBall.rigidbody.angularVelocity = Vector3.zero;
+		if(this.TheBall != null) {
+			this.TheBall.rigidbody.velocity = Vector3.zero;
+			this.TheBall.rigidbody.angularVelocity = Vector3.zero;
 		}
 	}
 	
