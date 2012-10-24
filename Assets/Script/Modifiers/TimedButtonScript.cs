@@ -54,7 +54,7 @@ public class TimedButtonScript : MonoBehaviour {
 	/// </summary>
 	public void UpdateState() {
 		// On vérifie que "l'animation" a débuté, si c'est le cas, on incrémente le "timer" jusqu'à la fin
-		if(this.IsActivated) {
+		if(Time.timeScale == 1 && this.IsActivated) {
 			if(this.isTimeOver) {
 				this._currentTime = 0.0f;
 				this.IsActivated = false;

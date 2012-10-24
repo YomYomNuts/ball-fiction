@@ -35,12 +35,14 @@ public class Utils {
 	/// </summary>
 	public const string SceneLevel1 = "Level1-tutorial";
 	public const string SceneLevel2 = "Level2";
-	public const string SceneLevel3 = "Level3-todo";
+	public const string SceneLevel3 = "Level3";
 	public const string SceneLevelDemo = "LevelDemo";
 	public const string SceneLevelSolved = "LevelSolved";
 	public const string SceneLevelAbandoned = "LevelAbandoned";
 	public const string SceneLevelLost = "LevelLost";
 	public const string SceneMenu = "Menu";
+	
+	public const float Decalage = 50f;
 	
 	/// <summary>
 	/// Affiche un warning dans la console disant que "missingObjectName" n'est pas assigné dans le script "scriptName" de "objectName"
