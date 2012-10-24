@@ -74,9 +74,6 @@ public class MenuButtonScript : MonoBehaviour {
 	
 	public void InitMenuButton() {
 		if(this._animations == null) {
-			this._animations = this.transform.parent.FindChild("Animations").gameObject;
-		}
-		if(this._animations == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("animations", this.GetType().ToString(), this.gameObject.name);
 		} else {
 			this._animations.SetActiveRecursively(false);
