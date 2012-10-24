@@ -23,22 +23,25 @@ public class MenuButtonInPauseScript : MenuButtonScript {
 	}
 	
 	protected void AnimationWithoutTimeScale() {
-		if(this._isOnMouseOver) {
+		if(Time.timeScale == 0) {
 			foreach(Transform current in this._animations.transform) {
 			    foreach(AnimationState state in current.animation) {
 			    	state.weight = 1;
-			    	state.enabled = true;
+					if(this._isOnMouseOver) {
+			    		state.enabled = true;
+					}
 			        state.time += (Time.realtimeSinceStartup - lastRealTime);
 				}
 			}
-		} else {
 	        foreach(AnimationState state in this.transform.parent.animation) {
 	        	state.weight = 1;
-	        	state.enabled = true;
+					if(!this._isOnMouseOver) {
+			    		state.enabled = true;
+					}
 		        state.time += (Time.realtimeSinceStartup - lastRealTime);
 			}
+	        lastRealTime = Time.realtimeSinceStartup;
 		}
-        lastRealTime = Time.realtimeSinceStartup;
 	}
 }
 
