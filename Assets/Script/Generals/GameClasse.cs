@@ -114,7 +114,9 @@ public class GameClasse {
 			return this._originalGravity;
 		}
 		private set {
-			this._originalGravity = value;
+			if(this.OriginalGravity == Vector3.zero) {
+				this._originalGravity = value;
+			}
 		}
 	}
 	
@@ -158,7 +160,8 @@ public class GameClasse {
 	/// Initialise la partie
 	/// </summary>
 	public void InitGame() {
-		this.OriginalGravity = Physics.gravity;
+		this.OriginalGravity = Physics.gravity; // Ne modifie OriginalGravity qu'une seule fois
+		Physics.gravity = this.OriginalGravity;
 		this.Score = 0;
 		this.GapTime = 0;
 		this.EndLevelTime = 0f;
