@@ -18,12 +18,12 @@ public class BallScript : MonoBehaviour {
 	/// <summary>
 	/// La hauteur de la caméra par rapport à la bille
 	/// </summary>
-	public float _hauteurCamera = 8f;
+	public float _cameraHigh = 8f;
 	
 	/// <summary>
 	/// Le recul de la caméra par rapport à la bille
 	/// </summary>
-	public float _reculCamera = 8f;
+	public float _cameraRetreat = 8f;
 	
 	// Use this for initialization
 	void Start () {
@@ -38,8 +38,8 @@ public class BallScript : MonoBehaviour {
 		if(this._theCamera != null) {
 			// On place la caméra derrière la bille
 			this._theCamera.transform.position = new Vector3(this.gameObject.transform.position.x,
-															 this.gameObject.transform.position.y + this._hauteurCamera,
-															 this.gameObject.transform.position.z - this._reculCamera);
+															 this.gameObject.transform.position.y + this._cameraHigh,
+															 this.gameObject.transform.position.z - this._cameraRetreat);
 		}
 		DisplayScoreAndTime.Instance.DisplayTime();
 	}
