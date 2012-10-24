@@ -26,6 +26,15 @@ public class TrayScript : MonoBehaviour {
 	/// </summary>
 	public float _maximumRotationAngleDelta = 5f;
 	
+	public GameObject TheBall {
+		get {
+			if(this._theBall == null) {
+				this._theBall = BallScript.Instance.gameObject;
+			}
+			return this._theBall;
+		}
+	}
+	
     // Définition du type d'évènement
     public delegate void ActionEvent();
 	
@@ -45,9 +54,9 @@ public class TrayScript : MonoBehaviour {
 		//Vérification de l'angle maximal avant d'appliquer une nouvelle gravité
 		if(this.transform.rotation.eulerAngles.z > (360 - this._maximumRotationAngle)
 		   || this.transform.rotation.eulerAngles.z < this._maximumRotationAngle + this._maximumRotationAngleDelta) {
-			if(this._theBall != null) {
+			if(this.TheBall != null) {
 				// Ajout d'une force de répulsion
-				this._theBall.rigidbody.AddForce(Vector3.up * _repulsionForce);
+				this.TheBall.rigidbody.AddForce(Vector3.up * _repulsionForce);
 			}
         	this.transform.RotateAround(Vector3.back, this._rotationSpeedTray * Time.deltaTime);
 			Physics.gravity = Quaternion.Euler(0, 0, -this._rotationSpeedTray * Time.deltaTime * 100) * Physics.gravity;
@@ -60,9 +69,9 @@ public class TrayScript : MonoBehaviour {
 		//Vérification de l'angle maximal avant d'appliquer une nouvelle gravité
 		if(this.transform.rotation.eulerAngles.z < this._maximumRotationAngle
 		   || this.transform.rotation.eulerAngles.z > (360 - this._maximumRotationAngle - this._maximumRotationAngleDelta)) {
-			if(this._theBall != null) {
+			if(this.TheBall != null) {
 				// Ajout d'une force de répulsion
-				this._theBall.rigidbody.AddForce(Vector3.up * _repulsionForce);
+				this.TheBall.rigidbody.AddForce(Vector3.up * _repulsionForce);
 			}
 	        this.transform.RotateAround(Vector3.forward, this._rotationSpeedTray * Time.deltaTime);
 			Physics.gravity = Quaternion.Euler(0, 0, this._rotationSpeedTray * Time.deltaTime * 100) * Physics.gravity;
@@ -71,7 +80,7 @@ public class TrayScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		if(this._theBall == null) {
+		if(this.TheBall == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
 		GameClasse.Instance.InitGame();

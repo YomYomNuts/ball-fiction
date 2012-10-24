@@ -19,18 +19,18 @@ public class PonctualChangeViewScript : PonctualButtonScript {
 	
 	// Use this for initialization
 	void Start () {
-		if(this._theBall == null) {
+		if(this.TheBall == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
-		} else if(this._theBall.GetComponent<BallScript>() == null) {
+		} else if(this.TheBall.GetComponent<BallScript>() == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("ball script", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
 	
 	// Update is called once per frame
 	override protected void ActionWhenActivated() {
-		if(this._theBall != null && this._theBall.GetComponent<BallScript>() != null) {
-			this._theBall.GetComponent<BallScript>()._cameraHigh = this._cameraHigh;
-			this._theBall.GetComponent<BallScript>()._cameraRetreat = this._cameraRetreat;
+		if(this.TheBall != null && this.TheBall.GetComponent<BallScript>() != null) {
+			this.TheBall.GetComponent<BallScript>()._cameraHigh = this._cameraHigh;
+			this.TheBall.GetComponent<BallScript>()._cameraRetreat = this._cameraRetreat;
 		}
 	}
 }

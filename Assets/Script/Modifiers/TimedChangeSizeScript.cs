@@ -21,22 +21,22 @@ public class TimedChangeSizeScript : TimedButtonScript {
 	
 	// Use this for initialization
 	void Start () {
-		if(this._theBall == null) {
+		if(this.TheBall == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		} else {
-			this._normalScale = this._theBall.transform.localScale; // on enregistre la taille normale
+			this._normalScale = this.TheBall.transform.localScale; // on enregistre la taille normale
 		}
 	}
 	// Update is called once per frame
 	void Update() {
 		base.UpdateState(); // Mise à jour du statut avec la méthode du parent
-		if(this._theBall != null) {
+		if(this.TheBall != null) {
 			if(this.IsActivated && !this._isChanged) {
-				this._theBall.transform.localScale *= this._coeff; // On change la taille
+				this.TheBall.transform.localScale *= this._coeff; // On change la taille
 				this._isChanged = true; // On enregistre le fait que la taille a changé
 				// Le bouton se désactive à la fin de l'animation (voir TimedButtonScript)
 			} else if(!this.IsActivated && this._isChanged) {
-				this._theBall.transform.localScale = this._normalScale;
+				this.TheBall.transform.localScale = this._normalScale;
 				this._isChanged = false;
 			}
 		}

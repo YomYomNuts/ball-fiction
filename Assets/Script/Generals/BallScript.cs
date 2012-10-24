@@ -5,6 +5,22 @@ using System.Collections;
 /// Script de comportement de la bille
 /// </summary>
 public class BallScript : MonoBehaviour {
+	
+	// Instance de la classe
+    private static BallScript _instance;
+	
+	/// <summary>
+	/// Propriété pour accéder publiquement à l'instance de la classe
+	/// </summary>
+    public static BallScript Instance {
+        get {
+			// Si l'instance n'existe pas, on la crée
+            if (BallScript._instance == null) {
+                //BallScript._instance = new BallScript();
+			}
+            return BallScript._instance;
+        }
+    }
 	/// <summary>
 	/// La caméra qui film la bille
 	/// </summary>
@@ -26,7 +42,16 @@ public class BallScript : MonoBehaviour {
 	public float _cameraRetreat = 8f;
 	
 	// Use this for initialization
+	void Awake () {
+		// Unity créera l'objet même si le constructeur est privé donc on doit initialiser l'instance de notre singleton ici
+        if (BallScript._instance == null) {
+            BallScript._instance = this;
+        } else if (BallScript._instance != this) {
+            Destroy(this.gameObject);
+        }
+	}
 	void Start () {
+		// Si aucune caméra n'est liée à la bille, on le signale dans les logs
 		if(this._theCamera == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("camera", this.GetType().ToString(), this.gameObject.name);
 		}
@@ -41,6 +66,7 @@ public class BallScript : MonoBehaviour {
 															 this.gameObject.transform.position.y + this._cameraHigh,
 															 this.gameObject.transform.position.z - this._cameraRetreat);
 		}
-		DisplayScoreAndTime.Instance.DisplayTime();
+		// On affiche le temps à chaque frame
+		DisplayTimeScript.Instance.DisplayTime();
 	}
 }

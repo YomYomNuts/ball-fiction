@@ -40,6 +40,14 @@ public class TimedButtonScript : MonoBehaviour {
 			this._isActivated = value;
 		}
 	}
+	public GameObject TheBall {
+		get {
+			if(this._theBall == null) {
+				this._theBall = BallScript.Instance.gameObject;
+			}
+			return this._theBall;
+		}
+	}
 	/// <summary>
 	/// True si le temps de l'animation est terminé
 	/// </summary>
@@ -79,7 +87,7 @@ public class TimedButtonScript : MonoBehaviour {
 	}
 	
 	private void ActivateTheButton(Collider collider) {
-		if(this._theBall == collider.gameObject) {
+		if(this.TheBall == collider.gameObject) {
 			this._currentTime = 0.0f;
 			this.IsActivated = true;
 		}

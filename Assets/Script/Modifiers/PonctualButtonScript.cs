@@ -33,6 +33,15 @@ abstract public class PonctualButtonScript : MonoBehaviour {
 		}
 	}
 	
+	public GameObject TheBall {
+		get {
+			if(this._theBall == null) {
+				this._theBall = BallScript.Instance.gameObject;
+			}
+			return this._theBall;
+		}
+	}
+	
 	// Trigger pour activer le boutton
 	void OnTriggerEnter(Collider collider) {
 		if(this._onEnter) {
@@ -48,7 +57,7 @@ abstract public class PonctualButtonScript : MonoBehaviour {
 	}
 	
 	private void DoAction(Collider collider) {
-		if(!this.IsActivated && this._theBall == collider.gameObject) {
+		if(!this.IsActivated && this.TheBall == collider.gameObject) {
 			this.IsActivated = true;
 			this.ActionWhenActivated();
 			if(this._linkedButton != null) {

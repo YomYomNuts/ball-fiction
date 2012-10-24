@@ -14,20 +14,20 @@ public class TimedAppearDisappearScript : TimedButtonScript {
 	
 	// Use this for initialization
 	void Start () {
-		if(this._theBall == null) {
+		if(this.TheBall == null) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
 	// Update is called once per frame
 	void Update() {
 		base.UpdateState(); // Mise à jour du statut avec la méthode du parent
-		if(this._theBall != null) {
+		if(this.TheBall != null) {
 			if(this.IsActivated && !this._isChanged) {
-				this._theBall.renderer.enabled = _isAppearButton;
+				this.TheBall.renderer.enabled = _isAppearButton;
 				this._isChanged = true; // On enregistre le fait que la taille a changé
 				// Le bouton se désactive à la fin de l'animation (voir TimedButtonScript)
 			} else if(!this.IsActivated && this._isChanged) {
-				this._theBall.renderer.enabled = !_isAppearButton;
+				this.TheBall.renderer.enabled = !_isAppearButton;
 				this._isChanged = false;
 			}
 		}

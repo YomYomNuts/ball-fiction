@@ -45,7 +45,7 @@ public class GameClasse {
 		}
 		private set {
 			this._score = value;
-			DisplayScoreAndTime.Instance.DisplayScore();
+			DisplayScoreScript.Instance.DisplayScore();
 		}
 	}
 	
