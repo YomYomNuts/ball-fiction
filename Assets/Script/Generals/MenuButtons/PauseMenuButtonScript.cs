@@ -14,7 +14,7 @@ public class PauseMenuButtonScript : MenuButtonScript {
 		if(this._objectsToDeactivate == null || this._objectsToDeactivate.Length == 0) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("objects to deactivate", this.GetType().ToString(), this.gameObject.name);
 		}
-		if(this._objectsToActivate == null || this._objectsToDeactivate.Length == 0) {
+		if(this._objectsToActivate == null || this._objectsToActivate.Length == 0) {
 			Utils.WarningMessageWhenNoGameObjectAssigned("objects to activate", this.GetType().ToString(), this.gameObject.name);
 		} else {
 			for(int i = 0; i < this._objectsToActivate.Length; i++) {
