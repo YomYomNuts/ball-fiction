@@ -40,6 +40,10 @@ public class PortalScript : MonoBehaviour{
 					// Permet d'éviter les téléports infinis
 					this._otherEnd.GetComponent<PortalScript>()._isActivated = false;
 				}
+				// On joue le son associé
+				if(this.audio != null) {
+					AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+				}
 			}
 		}
 	}

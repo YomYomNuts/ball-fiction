@@ -30,10 +30,18 @@ public class OnOffButtonForDoorScript : OnOffButtonScript {
 	// Action effectuée lorsque le bouton est activé
 	override protected void ActionWhenActivated() {
 		this._hasToBeOpened = true;
+		// On joue le son associé
+		if(this.audio != null) {
+			AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+		}
 	}
 	// Action effectuée lorsque le bouton est activé
 	override protected void ActionWhenNonActivated() {
 		this._hasToBeClosed = true;
+		// On joue le son associé
+		if(this.audio != null) {
+			AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+		}
 	}
 	
 	// Update is called once per frame

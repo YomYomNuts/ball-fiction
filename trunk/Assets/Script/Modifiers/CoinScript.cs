@@ -26,5 +26,9 @@ public class CoinScript : PonctualButtonScript {
 	override protected void ActionWhenActivated() {
 		GameClasse.Instance.IncrementScore(this._valueCoins);
 		this.gameObject.SetActiveRecursively(false);
+		// On joue le son associé
+		if(this.audio != null) {
+			AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+		}
 	}
 }

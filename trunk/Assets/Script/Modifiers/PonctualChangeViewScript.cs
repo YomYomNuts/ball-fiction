@@ -31,6 +31,10 @@ public class PonctualChangeViewScript : PonctualButtonScript {
 		if(this.TheBall != null && this.TheBall.GetComponent<BallScript>() != null) {
 			this.TheBall.GetComponent<BallScript>()._cameraHigh = this._cameraHigh;
 			this.TheBall.GetComponent<BallScript>()._cameraRetreat = this._cameraRetreat;
+			// On joue le son associé
+			if(this.audio != null) {
+				AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+			}
 		}
 	}
 }

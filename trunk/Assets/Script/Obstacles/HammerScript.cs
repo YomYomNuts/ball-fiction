@@ -36,6 +36,10 @@ public class HammerScript : MonoBehaviour {
 	void OnTriggerEnter(Collider collider) {
 		if(collider.gameObject == this.TheBall) {
 			GameClasse.Instance.IncrementScore(-this._hammerPower);
+			// On joue le son associé
+			if(this.audio != null) {
+				AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+			}
 		}
 	}
 }

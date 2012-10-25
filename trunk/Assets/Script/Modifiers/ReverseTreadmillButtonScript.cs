@@ -29,6 +29,10 @@ public class ReverseTreadmillButtonScript : OnOffButtonScript {
 				current.gameObject.GetComponent<TreadmillScript>().InverseDirection();
 			}
 		}
+		// On joue le son associé
+		if(this.audio != null) {
+			AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+		}
 	}
 	
 	override protected void ActionWhenNonActivated() {

@@ -24,7 +24,15 @@ public class WindScript : MonoBehaviour {
 	
 	}
 	
-	// Trigger pour augmenter le score
+	// Fonction effectuée au moment où un objet entre dans le trigger
+	void OnTriggerEnter(Collider collider) {
+		// On joue le son associé
+		if(this.audio != null) {
+			AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+		}
+	}
+	
+	// Fonction effectuée pendant que le objet est dans le trigger
 	void OnTriggerStay(Collider collider) {
 		// On applique la force selon la direction
 		if(this._windDirection == Utils.Direction.Forward) {

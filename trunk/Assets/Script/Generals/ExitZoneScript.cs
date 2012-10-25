@@ -19,6 +19,6 @@ public class ExitZoneScript : MonoBehaviour {
 	
 	// Collision pour le GameOver
 	void OnTriggerEnter(Collider collider) {
-			GameClasse.Instance.LevelLost();
+		GameClasse.Instance.LevelLost();
 	}
 }
