@@ -28,6 +28,10 @@ public class TimedButtonForDoorScript : TimedButtonScript {
 			base.UpdateState();
 			if(this.IsActivated) {
 				this._theDoor.GetComponent<DoorScript>().OpenTheDoor();
+				// On joue le son associé
+				if(this.audio != null) {
+					AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+				}
 			} else {
 				this._theDoor.GetComponent<DoorScript>().CloseTheDoor();
 			}

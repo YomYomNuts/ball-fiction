@@ -59,6 +59,10 @@ public class PonctualChangeSizeScript : PonctualButtonScript {
 					} else {
 						this.IsActivated = false;
 					}
+					// On joue le son associé
+					if(this.audio != null) {
+						AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+					}
 				}
 			} else {
 				this._isChanged = false; // Si le bouton est passé à false, on peut re

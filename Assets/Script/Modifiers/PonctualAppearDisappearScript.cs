@@ -20,6 +20,10 @@ public class PonctualAppearDisappearScript : PonctualButtonScript {
 		if(this.TheBall != null) {
 			if(this.IsActivated) {
 				this.TheBall.renderer.enabled = _isAppearButton;
+				// On joue le son associé
+				if(this.audio != null) {
+					AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+				}
 			}
 		}
 	}

@@ -23,6 +23,10 @@ public class StopBallScript : OnOffButtonScript {
 		if(this.TheBall != null) {
 			this.TheBall.rigidbody.velocity = Vector3.zero;
 			this.TheBall.rigidbody.angularVelocity = Vector3.zero;
+			// On joue le son associé
+			if(this.audio != null) {
+				AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+			}
 		}
 	}
 	
