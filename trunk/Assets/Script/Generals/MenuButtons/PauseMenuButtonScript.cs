@@ -28,7 +28,8 @@ public class PauseMenuButtonScript : MenuButtonScript {
 		} else { // Si les objets à "activer" lors de la pause sont présents, on les "désactive" pour l'instant
 			for(int i = 0; i < this._objectsToActivate.Length; i++) {
 				// La "désactivation" consiste au déplacement de l'objet pour qu'il ne soit plus visible par la caméra
-				this._objectsToActivate[i].transform.localPosition += new Vector3(Utils.Decalage, 0, 0);
+				//this._objectsToActivate[i].transform.localPosition += new Vector3(Utils.Decalage, 0, 0);
+				Utils.HideObject(this._objectsToActivate[i]);
 			}
 		}
 		//Ajout du listener
@@ -38,13 +39,15 @@ public class PauseMenuButtonScript : MenuButtonScript {
 			// On "active" les objets à "activer"
 			if(this._objectsToActivate != null) {
 				for(int i = 0; i < this._objectsToActivate.Length; i++) {
-					this._objectsToActivate[i].transform.localPosition -= new Vector3(Utils.Decalage, 0, 0);
+					//this._objectsToActivate[i].transform.localPosition -= new Vector3(Utils.Decalage, 0, 0);
+					Utils.ShowObject(this._objectsToActivate[i]);
 				}
 			}
 			// On "désactive" les objets à "désactiver"
 			if(this._objectsToDeactivate != null) {
 				for(int i = 0; i < this._objectsToDeactivate.Length; i++) {
-					this._objectsToDeactivate[i].transform.localPosition += new Vector3(Utils.Decalage, 0, 0);
+					//this._objectsToDeactivate[i].transform.localPosition += new Vector3(Utils.Decalage, 0, 0);
+					Utils.HideObject(this._objectsToDeactivate[i]);
 				}
 			}
 		});

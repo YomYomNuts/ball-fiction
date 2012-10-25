@@ -15,12 +15,19 @@ public class ClickListenerScript : MonoBehaviour {
 	public event ActionEventClick OnClicked;
 	
 	// Update is called once per frame
-	void Update() {
-		if(Input.GetButton("LeftClick")) {
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if(this.collider.bounds.IntersectRay(ray)) {
-				Click();
-			}
+//	void Update() {
+//		if(Input.GetButton("LeftClick")) {
+//			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//			if(this.collider.bounds.IntersectRay(ray)) {
+//				Click();
+//			}
+//		}
+//	}
+	
+	void OnMouseUp() {
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if(this.collider.bounds.IntersectRay(ray)) {
+			Click();
 		}
 	}
 	

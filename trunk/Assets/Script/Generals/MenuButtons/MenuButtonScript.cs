@@ -103,27 +103,31 @@ public class MenuButtonScript : MonoBehaviour {
 				
 			} else if(this._buttonType == Utils.MenuButton.Menu){ // Retour au menu
 				GameClasse.Instance.CurrentLevelName = Utils.SceneMenu;
-				Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
+				//Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
 				
 			} else if(this._buttonType == Utils.MenuButton.Quit){ // Quitter l'application
-				Application.Quit();
+				//Application.Quit();
 				
 			} else if(this._buttonType == Utils.MenuButton.Level1) { // Lancement du Level 1
 				GameClasse.Instance.CurrentLevelName = Utils.SceneLevel1;
-				Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
+				//Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
 				
 			} else if(this._buttonType == Utils.MenuButton.Level2) { // Lancement du Level 2
 				GameClasse.Instance.CurrentLevelName = Utils.SceneLevel2;
-				Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
+				//Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
 				
 			} else if(this._buttonType == Utils.MenuButton.Level3) { // Lancement du Level 3
 				GameClasse.Instance.CurrentLevelName = Utils.SceneLevel3;
-				Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
+				//Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
 				
 			} else if(this._buttonType == Utils.MenuButton.RestartLevel) { // Lancement du Level en cours
-				Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
+				//Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
+				
+			} else if(this._buttonType == Utils.MenuButton.Info) { // Lancement du Level en cours
+				GameClasse.Instance.CurrentLevelName = Utils.SceneInfo;
 				
 			}
+			Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
 		});
 	}
 }
