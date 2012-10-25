@@ -27,7 +27,8 @@ public class Utils {
 		LevelDemo,
 		Level1,
 		Level2,
-		Level3
+		Level3,
+		Info
 	}
 	
 	/// <summary>
@@ -41,6 +42,7 @@ public class Utils {
 	public const string SceneLevelAbandoned = "LevelAbandoned";
 	public const string SceneLevelLost = "LevelLost";
 	public const string SceneMenu = "Menu";
+	public const string SceneInfo = "Info";
 	
 	public const float Decalage = 50f;
 	
@@ -86,5 +88,13 @@ public class Utils {
 	
 	public static string FormatScore(int score) {
 			return string.Format("{0}",score);
+	}
+	
+	public static void HideObject(GameObject objectToHide) {
+		objectToHide.transform.localPosition += new Vector3(Utils.Decalage, 0, 0);
+	}
+	
+	public static void ShowObject(GameObject objectToShow) {
+		objectToShow.transform.localPosition -= new Vector3(Utils.Decalage, 0, 0);
 	}
 }
