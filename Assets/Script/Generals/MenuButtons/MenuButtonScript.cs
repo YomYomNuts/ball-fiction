@@ -126,6 +126,9 @@ public class MenuButtonScript : MonoBehaviour {
 			} else if(this._buttonType == Utils.MenuButton.Info) { // Lancement du Level en cours
 				GameClasse.Instance.CurrentLevelName = Utils.SceneInfo;
 				
+			} else if(this._buttonType == Utils.MenuButton.Credits) { // Lancement du Level en cours
+				GameClasse.Instance.CurrentLevelName = Utils.SceneCredits;
+				
 			}
 			Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
 		});
