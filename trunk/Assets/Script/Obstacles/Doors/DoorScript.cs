@@ -5,24 +5,9 @@ using System;
 /// Script de comportement d'une porte
 /// </summary>
 public class DoorScript : MonoBehaviour {
+	#region Attributes
 	// La position d'origine, afin de pouvoir refermer la porte comme il faut
 	private Vector3 _savedPosition;
-	
-	/// <summary>
-	/// Permet de savoir si la porte est ouverte
-	/// </summary>
-	public bool _isOpened = false;
-	/// <summary>
-	/// Propriété liée à isOpened
-	/// </summary>
-	public bool IsOpened {
-		get {
-			return this._isOpened;
-		}
-		private set {
-			this._isOpened = value;
-		}
-	}
 	/// <summary>
 	/// La position maximale pour la porte
 	/// </summary>
@@ -34,27 +19,47 @@ public class DoorScript : MonoBehaviour {
 	/// <summary>
 	/// La direction dans laquelle la porte s'ouvre
 	/// </summary>
-    public Utils.Direction _doorDirection = Utils.Direction.Up;
+    public UtilsScript.Direction _doorDirection = UtilsScript.Direction.Up;
+	/// <summary>
+	/// Permet de savoir si la porte est ouverte
+	/// </summary>
+	public bool _isOpened = false;
 	
+	/// <summary>
+	/// Propriété liée à isOpened
+	/// </summary>
+	public bool IsOpened {
+		get {
+			return this._isOpened;
+		}
+		private set {
+			this._isOpened = value;
+		}
+	}
+	#endregion
+	
+	#region Unity Methods
 	// Use this for initialization
 	void Start () {
 		this._savedPosition = this.transform.localPosition;
 	}
+	#endregion
 	
+	#region Methods
 	// Ouvre la porte
 	public void OpenTheDoor() {
 		if(!this.IsOpened) {
-			if(this._doorDirection == Utils.Direction.Up) {
+			if(this._doorDirection == UtilsScript.Direction.Up) {
 				this.OpenTheDoorToUp();
-			} else if(this._doorDirection == Utils.Direction.Down) {
+			} else if(this._doorDirection == UtilsScript.Direction.Down) {
 				this.OpenTheDoorToDown();
-			} else if(this._doorDirection == Utils.Direction.Left) {
+			} else if(this._doorDirection == UtilsScript.Direction.Left) {
 				this.OpenTheDoorToLeft();
-			} else if(this._doorDirection == Utils.Direction.Right) {
+			} else if(this._doorDirection == UtilsScript.Direction.Right) {
 				this.OpenTheDoorToRight();
-			} else if(this._doorDirection == Utils.Direction.Forward) {
+			} else if(this._doorDirection == UtilsScript.Direction.Forward) {
 				this.OpenTheDoorToForward();
-			} else if(this._doorDirection == Utils.Direction.Back) {
+			} else if(this._doorDirection == UtilsScript.Direction.Back) {
 				this.OpenTheDoorToBack();
 			}
 		}
@@ -62,22 +67,23 @@ public class DoorScript : MonoBehaviour {
 	// Ferme la porte
 	public void CloseTheDoor() {
 		if(this.IsOpened) {
-			if(this._doorDirection == Utils.Direction.Up) {
+			if(this._doorDirection == UtilsScript.Direction.Up) {
 				this.CloseTheDoorFromUp();
-			} else if(this._doorDirection == Utils.Direction.Down) {
+			} else if(this._doorDirection == UtilsScript.Direction.Down) {
 				this.CloseTheDoorFromDown();
-			} else if(this._doorDirection == Utils.Direction.Left) {
+			} else if(this._doorDirection == UtilsScript.Direction.Left) {
 				this.CloseTheDoorFromLeft();
-			} else if(this._doorDirection == Utils.Direction.Right) {
+			} else if(this._doorDirection == UtilsScript.Direction.Right) {
 				this.CloseTheDoorFromRight();
-			} else if(this._doorDirection == Utils.Direction.Forward) {
+			} else if(this._doorDirection == UtilsScript.Direction.Forward) {
 				this.CloseTheDoorFromForward();
-			} else if(this._doorDirection == Utils.Direction.Back) {
+			} else if(this._doorDirection == UtilsScript.Direction.Back) {
 				this.CloseTheDoorFromBack();
 			}
 		}
 	}
 	
+	#region To Open
 	// Les ouvertures selon la direction de la porte
 	private void OpenTheDoorToLeft() {
 		if(this.transform.localPosition.x >= this._maxPosition) {
@@ -121,7 +127,9 @@ public class DoorScript : MonoBehaviour {
 			this.IsOpened = true;
 		}
 	}
+	#endregion
 	
+	#region To Close
 	// Les fermeture selon la direction de la porte
 	private void CloseTheDoorFromLeft() {
 		if (this._savedPosition.x > Math.Round(this.transform.localPosition.x, 2)) {
@@ -171,4 +179,7 @@ public class DoorScript : MonoBehaviour {
 			this.IsOpened = false;
 		}
 	}
+	#endregion
+	// Fin de la région Methods
+	#endregion
 }

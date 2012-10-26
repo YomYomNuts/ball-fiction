@@ -5,26 +5,22 @@ using System.Collections;
 /// Script général de comportement d'un bouton qui est activé/désactivé quand on appuie dessus
 /// </summary>
 public class ReduceBallSpeedScript : OnOffButtonScript {
+	#region Unity Methods
 	// Use this for initialization
 	void Start () {
 		if(this.TheBall == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {}
-	
+	#endregion
+	// Actions à effectuées lorsque le bouton est activé
 	override protected void ActionWhenActivated() {
 		if(this.TheBall != null) {
+			// On met la vitesse à 0, la rotation de la bille la fera avancer lentement
 			this.TheBall.rigidbody.velocity = Vector3.zero;
-			// On joue le son associé
-			if(this.audio != null) {
-				AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
-			}
 		}
 	}
-	
+	// Actions à effectuées lorsque le bouton est désactivé
 	override protected void ActionWhenNonActivated() {
 		this.ActionWhenActivated();
 	}

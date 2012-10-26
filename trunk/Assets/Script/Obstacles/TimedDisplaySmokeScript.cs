@@ -4,11 +4,11 @@ using System.Collections;
 /// Script du bouton qui affiche la fumée
 /// </summary>
 public class TimedDisplaySmokeScript : TimedButtonScript {
+	#region Attributes
 	/// <summary>
 	/// La fumée à faire apparaître. Cela peut être un objet qui affiche de la fumée ou le parent de plusieurs objets qui en affichent
 	/// </summary>
 	public GameObject _theSmoke;
-	
 	// Variable permettant de savoir si la fumée est affichée ou non
 	public bool _isDisplayed = false;
 	
@@ -31,14 +31,16 @@ public class TimedDisplaySmokeScript : TimedButtonScript {
 			}
 		}
 	}
+	#endregion
 	
+	#region Unity Methods
 	// Use this for initialization
 	void Start() {
 		if(this.TheBall == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
 		if(this._theSmoke == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("smoke", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("smoke", this.GetType().ToString(), this.gameObject.name);
 		} else {
 			// Mise à jour du renderer de la fumée en fonction de la valeur de this.IsDisplayed
 			this.IsDisplayed = this.IsDisplayed;
@@ -56,4 +58,5 @@ public class TimedDisplaySmokeScript : TimedButtonScript {
 			}
 		}
 	}
+	#endregion
 }

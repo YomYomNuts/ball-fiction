@@ -4,6 +4,7 @@ using UnityEngine;
 /// Script gérant l'affichage des scores et temps dans le menu de levelSolved
 /// </summary>
 public class DisplayBestScoresAndTimesScript : MonoBehaviour {
+	#region Attributes
 	/// <summary>
 	/// L'emplacement où afficher le meilleur score
 	/// </summary>
@@ -29,7 +30,10 @@ public class DisplayBestScoresAndTimesScript : MonoBehaviour {
 	/// L'emplacement où afficher le troisième meilleur temps
 	/// </summary>
 	public GameObject _bestTime3;
+	#endregion
 	
+	#region Unity Methods
+	// Use this for initialization
 	void Start() {
 		// Affichage du score et du temps actuels
 		DisplayScoreScript.Instance.DisplayScore();
@@ -37,40 +41,41 @@ public class DisplayBestScoresAndTimesScript : MonoBehaviour {
 		
 		// Affichage des meilleurs score
 		if(this._bestScore1 == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("best score", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("best score", this.GetType().ToString(), this.gameObject.name);
 		} else {
-			this._bestScore1.GetComponent<TextMesh>().text = Utils.FormatScore(PlayerPrefs.GetInt(string.Concat("BestScore",GameClasse.Instance.CurrentLevelName)));
+			this._bestScore1.GetComponent<TextMesh>().text = UtilsScript.FormatScore(PlayerPrefs.GetInt(string.Concat("BestScore",GameClasseScript.Instance.CurrentLevelName)));
 		}
 		
 		if(this._bestScore2 == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("second best score", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("second best score", this.GetType().ToString(), this.gameObject.name);
 		} else {
-			this._bestScore2.GetComponent<TextMesh>().text = Utils.FormatScore(PlayerPrefs.GetInt(string.Concat("SecondBestScore",GameClasse.Instance.CurrentLevelName)));
+			this._bestScore2.GetComponent<TextMesh>().text = UtilsScript.FormatScore(PlayerPrefs.GetInt(string.Concat("SecondBestScore",GameClasseScript.Instance.CurrentLevelName)));
 		}
 		
 		if(this._bestScore3 == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("third best score", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("third best score", this.GetType().ToString(), this.gameObject.name);
 		} else {
-			this._bestScore3.GetComponent<TextMesh>().text = Utils.FormatScore(PlayerPrefs.GetInt(string.Concat("ThirdBestScore",GameClasse.Instance.CurrentLevelName)));
+			this._bestScore3.GetComponent<TextMesh>().text = UtilsScript.FormatScore(PlayerPrefs.GetInt(string.Concat("ThirdBestScore",GameClasseScript.Instance.CurrentLevelName)));
 		}
 		
 		// Affichage des meilleurs temps
 		if(this._bestTime1 == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("best time", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("best time", this.GetType().ToString(), this.gameObject.name);
 		} else {
-			this._bestTime1.GetComponent<TextMesh>().text = Utils.FormatTime(PlayerPrefs.GetFloat(string.Concat("BestTime",GameClasse.Instance.CurrentLevelName)));
+			this._bestTime1.GetComponent<TextMesh>().text = UtilsScript.FormatTime(PlayerPrefs.GetFloat(string.Concat("BestTime",GameClasseScript.Instance.CurrentLevelName)));
 		}
 		
 		if(this._bestTime2 == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("second best time", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("second best time", this.GetType().ToString(), this.gameObject.name);
 		} else {
-			this._bestTime2.GetComponent<TextMesh>().text = Utils.FormatTime(PlayerPrefs.GetFloat(string.Concat("SecondBestTime",GameClasse.Instance.CurrentLevelName)));
+			this._bestTime2.GetComponent<TextMesh>().text = UtilsScript.FormatTime(PlayerPrefs.GetFloat(string.Concat("SecondBestTime",GameClasseScript.Instance.CurrentLevelName)));
 		}
 		
 		if(this._bestTime3 == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("third best time", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("third best time", this.GetType().ToString(), this.gameObject.name);
 		} else {
-			this._bestTime3.GetComponent<TextMesh>().text = Utils.FormatTime(PlayerPrefs.GetFloat(string.Concat("ThirdBestTime",GameClasse.Instance.CurrentLevelName)));
+			this._bestTime3.GetComponent<TextMesh>().text = UtilsScript.FormatTime(PlayerPrefs.GetFloat(string.Concat("ThirdBestTime",GameClasseScript.Instance.CurrentLevelName)));
 		}
 	}
+	#endregion
 }

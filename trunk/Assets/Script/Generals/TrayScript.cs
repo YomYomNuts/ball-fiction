@@ -5,6 +5,19 @@ using System.Collections;
 /// Script gérant le comportement de basculement du plateau
 /// </summary>
 public class TrayScript : MonoBehaviour {
+	#region Attributes
+    // Définition du type d'évènement
+    public delegate void ActionEvent();
+	
+	/// <summary>
+	/// Event appelé quand on bascule le plateau vers la gauche
+	/// </summary>
+    public event ActionEvent OnLeft;
+	/// <summary>
+	/// Event appelé quand on bascule le plateau vers la droite
+	/// </summary>
+    public event ActionEvent OnRight;
+	
 	/// <summary>
 	/// La bille
 	/// </summary>
@@ -26,27 +39,21 @@ public class TrayScript : MonoBehaviour {
 	/// </summary>
 	public float _maximumRotationAngleDelta = 5f;
 	
+	/// <summary>
+	/// Propriété liée à la bille
+	/// </summary>
 	public GameObject TheBall {
 		get {
+			// S'il n'y a aucune bille disponible, on prend la "bille par défaut" (singleton de BallScript)
 			if(this._theBall == null) {
 				this._theBall = BallScript.Instance.gameObject;
 			}
 			return this._theBall;
 		}
 	}
+	#endregion
 	
-    // Définition du type d'évènement
-    public delegate void ActionEvent();
-	
-	/// <summary>
-	/// Event appelé quand on bascule le plateau vers la gauche
-	/// </summary>
-    public event ActionEvent OnLeft;
-	/// <summary>
-	/// Event appelé quand on bascule le plateau vers la droite
-	/// </summary>
-    public event ActionEvent OnRight;
-	
+	#region Unity Methods
 	/// <summary>
 	/// Evènement déclenché lors de l'appui sur le bouton qui doit faire basculer le plateau vers la gauche
 	/// </summary>
@@ -81,9 +88,9 @@ public class TrayScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if(this.TheBall == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
-		GameClasse.Instance.InitGame();
+		GameClasseScript.Instance.InitGame();
 		//Ajout des évènements lors du basculement vers la gauche ou la droite
         this.OnLeft += new ActionEvent(OnLeftEventReceived);
         this.OnRight += new ActionEvent(OnRightEventReceived);
@@ -98,4 +105,5 @@ public class TrayScript : MonoBehaviour {
             this.OnRight();
 		}
 	}
+	#endregion
 }

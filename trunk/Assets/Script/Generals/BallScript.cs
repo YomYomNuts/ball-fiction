@@ -5,7 +5,7 @@ using System.Collections;
 /// Script de comportement de la bille
 /// </summary>
 public class BallScript : MonoBehaviour {
-	
+	#region Static Elements
 	// Instance de la classe
     private static BallScript _instance;
 	
@@ -16,32 +16,35 @@ public class BallScript : MonoBehaviour {
         get {
 			// Si l'instance n'existe pas, on la crée
             if (BallScript._instance == null) {
-                //BallScript._instance = new BallScript();
+                BallScript._instance = new BallScript();
 			}
             return BallScript._instance;
         }
     }
+	#endregion
+	
+	#region Attributes
 	/// <summary>
 	/// La caméra qui film la bille
 	/// </summary>
 	public GameObject _theCamera;
-	
 	/// <summary>
 	/// Force maximale sur l'objet
 	/// </summary>
     public Vector3 _absolueVectorForceBall = new Vector3(2,2,2);
-	
 	/// <summary>
 	/// La hauteur de la caméra par rapport à la bille
 	/// </summary>
 	public float _cameraHigh = 8f;
-	
 	/// <summary>
 	/// Le recul de la caméra par rapport à la bille
 	/// </summary>
 	public float _cameraRetreat = 8f;
+	#endregion
 	
-	// Use this for initialization
+	#region Unity Methods
+	// Méthode appelée lors du "réveil" de l'objet (avant même le Start)
+	// Il est important de créer les singleton dans le Awake pour être sûr qu'ils soient créé avant le Start des autres objets
 	void Awake () {
 		// Unity créera l'objet même si le constructeur est privé donc on doit initialiser l'instance de notre singleton ici
         if (BallScript._instance == null) {
@@ -50,10 +53,12 @@ public class BallScript : MonoBehaviour {
             Destroy(this.gameObject);
         }
 	}
+	
+	// Use this for initialization
 	void Start () {
 		// Si aucune caméra n'est liée à la bille, on le signale dans les logs
 		if(this._theCamera == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("camera", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("camera", this.GetType().ToString(), this.gameObject.name);
 		}
 		PlayerPrefs.DeleteAll(); // Pour ne pas poluer le PlayerPrefs pendant les tests
 	}
@@ -69,4 +74,5 @@ public class BallScript : MonoBehaviour {
 		// On affiche le temps à chaque frame
 		DisplayTimeScript.Instance.DisplayTime();
 	}
+	#endregion
 }
