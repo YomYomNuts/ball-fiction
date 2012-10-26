@@ -28,7 +28,8 @@ public class Utils {
 		Level1,
 		Level2,
 		Level3,
-		Info
+		Info,
+		Credits
 	}
 	
 	/// <summary>
@@ -43,6 +44,7 @@ public class Utils {
 	public const string SceneLevelLost = "LevelLost";
 	public const string SceneMenu = "Menu";
 	public const string SceneInfo = "Info";
+	public const string SceneCredits = "Credits";
 	
 	public const float Decalage = 50f;
 	
