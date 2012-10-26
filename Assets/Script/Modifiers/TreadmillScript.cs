@@ -62,6 +62,10 @@ public class TreadmillScript : MonoBehaviour {
 			} else if(this._ballDirection == Utils.Direction.Down && downPossible) {
 				collision.gameObject.rigidbody.AddForce(Vector3.down * this._ballForce);
 			}
+			// On joue le son associé
+			if(this.audio != null) {
+				AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+			}
 		}
 	}
 	

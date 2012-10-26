@@ -25,6 +25,10 @@ public class TimedAppearDisappearScript : TimedButtonScript {
 			if(this.IsActivated && !this._isChanged) {
 				this.TheBall.renderer.enabled = _isAppearButton;
 				this._isChanged = true; // On enregistre le fait que la taille a changé
+				// On joue le son associé
+				if(this.audio != null) {
+					AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+				}
 				// Le bouton se désactive à la fin de l'animation (voir TimedButtonScript)
 			} else if(!this.IsActivated && this._isChanged) {
 				this.TheBall.renderer.enabled = !_isAppearButton;
