@@ -5,20 +5,11 @@ using System.Collections;
 /// Script permettant d'avoir un gameover
 /// </summary>
 public class ExitZoneScript : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
-	
+	#region Methods
 	// Collision pour le GameOver
 	void OnTriggerEnter(Collider collider) {
-		GameClasse.Instance.LevelLost();
+		GameClasseScript.Instance.LevelLost();
 	}
+	#endregion
 }

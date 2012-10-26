@@ -4,6 +4,7 @@ using System.Collections;
 /// Script de comportement de l'aggrandissement de la bille (ponctuel)
 /// </summary>
 public class PonctualChangeSizeScript : PonctualButtonScript {
+	#region Attributes
 	// Le scale de base de la bille
 	private Vector3 _normalScale;
 	
@@ -22,7 +23,9 @@ public class PonctualChangeSizeScript : PonctualButtonScript {
 	/// True = le calcul de la nouvelle taille se fait en fonction de la taille normale, pas de la taille courante
 	/// </summary>
 	public bool _isBasedOnNormalScale = false;
-	
+	/// <summary>
+	/// Propriété redinie pour mettre isChanged à false quand on désactive le bouton
+	/// </summary>
 	override public bool IsActivated {
 		get {
 			return base.IsActivated;
@@ -34,34 +37,35 @@ public class PonctualChangeSizeScript : PonctualButtonScript {
 			}
 		}
 	}
+	#endregion
 	
+	#region Unity Methods
 	// Use this for initialization
 	void Start () {
 		if(this.TheBall == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		} else {
 			this._normalScale = this.TheBall.transform.localScale; // on enregistre la taille normale
 		}
 	}
+	#endregion
 	
-	// Update is called once per frame
+	#region Methods
+	// Action effectuée lorsqu'on active le bouton
 	override protected void ActionWhenActivated() {
 		if(this.TheBall != null) {
 			if(this.IsActivated) {
 				if(!this._isChanged) {
+					// On change la taille
 					if(this._isBasedOnNormalScale) {
-						this.TheBall.transform.localScale = this._normalScale * this._coeff; // On change la taille
+						this.TheBall.transform.localScale = this._normalScale * this._coeff; 
 					} else {
-						this.TheBall.transform.localScale *= this._coeff; // On change la taille
+						this.TheBall.transform.localScale *= this._coeff;
 					}
 					if(this.TheBall.transform.localScale == this._normalScale*this._coeff) {
 						this._isChanged = true; // On enregistre le fait que la taille a changé
 					} else {
 						this.IsActivated = false;
-					}
-					// On joue le son associé
-					if(this.audio != null) {
-						AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
 					}
 				}
 			} else {
@@ -69,4 +73,5 @@ public class PonctualChangeSizeScript : PonctualButtonScript {
 			}
 		}
 	}
+	#endregion
 }

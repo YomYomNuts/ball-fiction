@@ -5,7 +5,14 @@ using System.Collections;
 /// Script de comportement des bouton de menu pour page suivante et précédente
 /// </summary>
 public class NextPreviousMenuButtonScript : MenuButtonScript {
+	#region Attributes
+	/// <summary>
+	/// Permet de savoir s'il s'agit d'un bouton pour passer à la page suivante ou précédente
+	/// </summary>
 	public bool _isNextButton = true;
+	#endregion
+	
+	#region Unity Methods
 	// Use this for initialization
 	void Start () {
 		// Initialisation du bouton
@@ -20,6 +27,7 @@ public class NextPreviousMenuButtonScript : MenuButtonScript {
 			}
 		});
 	}
+	#endregion
 }
 
 

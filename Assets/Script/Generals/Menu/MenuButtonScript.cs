@@ -5,10 +5,11 @@ using System.Collections;
 /// Script de comportement des bouton de menu
 /// </summary>
 public class MenuButtonScript : MonoBehaviour {
+	#region Attributes
 	/// <summary>
 	/// Type du bouton (détermine de l'action à effectuer)
 	/// </summary>
-	public Utils.MenuButton _buttonType = Utils.MenuButton.Menu;
+	public UtilsScript.MenuButton _buttonType = UtilsScript.MenuButton.Menu;
 	/// <summary>
 	/// The _coeff.
 	/// </summary>
@@ -18,7 +19,9 @@ public class MenuButtonScript : MonoBehaviour {
 	
 	// Permet de savoir si la souris est sur le bouton ou non
 	protected bool _isOnMouseOver = false;
+	#endregion
 	
+	#region Untiy Methods
 	// Use this for initialization
 	void Start () {
 		// Initialisation du bouton
@@ -34,7 +37,9 @@ public class MenuButtonScript : MonoBehaviour {
 	void OnMouseExit() {
 		this.StartOnMouseExitActions();
 	}
+	#endregion
 	
+	#region Methods
 	// Actions exécutées lorsque la souris passe sur le bouton
 	protected void StartOnMouseEnterActions() {
 		// On active les animations qu'il faut
@@ -84,7 +89,7 @@ public class MenuButtonScript : MonoBehaviour {
 	public void InitMenuButton() {
 		if(this._animations == null) {
 			// Si aucune animation n'est liée au bouton, on le signale dans les logs
-			Utils.WarningMessageWhenNoGameObjectAssigned("animations", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("animations", this.GetType().ToString(), this.gameObject.name);
 		} else {
 			// Au début, les animations qui doivent être affichées lors du "mouse over" doivent être désactivées
 			this._animations.SetActiveRecursively(false);
@@ -97,42 +102,39 @@ public class MenuButtonScript : MonoBehaviour {
 		this.GetComponent<ClickListenerScript>().OnClicked += new ClickListenerScript.ActionEventClick(
 		() => {
 			// Actions effectuées selon le type de bouton
-			if(this._buttonType == Utils.MenuButton.LevelDemo){ // Lancement du Level Demo
-				GameClasse.Instance.CurrentLevelName = Utils.SceneLevelDemo;
-				Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
+			if(this._buttonType == UtilsScript.MenuButton.LevelDemo){
+				// Lancement du Level Demo
+				GameClasseScript.Instance.CurrentLevelName = UtilsScript.SceneLevelDemo;
+			} else if(this._buttonType == UtilsScript.MenuButton.Menu){
+				// Retour au menu
+				GameClasseScript.Instance.CurrentLevelName = UtilsScript.SceneMenu;
+			} else if(this._buttonType == UtilsScript.MenuButton.Quit){
+				// Quitter l'application
+				Application.Quit();
+			} else if(this._buttonType == UtilsScript.MenuButton.Level1) {
+				// Lancement du Level 1
+				GameClasseScript.Instance.CurrentLevelName = UtilsScript.SceneLevel1;
+			} else if(this._buttonType == UtilsScript.MenuButton.Level2) {
+				// Lancement du Level 2
+				GameClasseScript.Instance.CurrentLevelName = UtilsScript.SceneLevel2;
+			} else if(this._buttonType == UtilsScript.MenuButton.Level3) {
+				// Lancement du Level 3
+				GameClasseScript.Instance.CurrentLevelName = UtilsScript.SceneLevel3;
 				
-			} else if(this._buttonType == Utils.MenuButton.Menu){ // Retour au menu
-				GameClasse.Instance.CurrentLevelName = Utils.SceneMenu;
-				//Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
-				
-			} else if(this._buttonType == Utils.MenuButton.Quit){ // Quitter l'application
-				//Application.Quit();
-				
-			} else if(this._buttonType == Utils.MenuButton.Level1) { // Lancement du Level 1
-				GameClasse.Instance.CurrentLevelName = Utils.SceneLevel1;
-				//Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
-				
-			} else if(this._buttonType == Utils.MenuButton.Level2) { // Lancement du Level 2
-				GameClasse.Instance.CurrentLevelName = Utils.SceneLevel2;
-				//Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
-				
-			} else if(this._buttonType == Utils.MenuButton.Level3) { // Lancement du Level 3
-				GameClasse.Instance.CurrentLevelName = Utils.SceneLevel3;
-				//Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
-				
-			} else if(this._buttonType == Utils.MenuButton.RestartLevel) { // Lancement du Level en cours
-				//Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
-				
-			} else if(this._buttonType == Utils.MenuButton.Info) { // Lancement du Level en cours
-				GameClasse.Instance.CurrentLevelName = Utils.SceneInfo;
-				
-			} else if(this._buttonType == Utils.MenuButton.Credits) { // Lancement du Level en cours
-				GameClasse.Instance.CurrentLevelName = Utils.SceneCredits;
-				
+			} else if(this._buttonType == UtilsScript.MenuButton.RestartLevel) {
+				// Lancement du Level en cours, rien à faire, le level est charger à la fin de la méthode
+				// On laise le if au cas où dans l'avenir il faut exécuter des actions
+			} else if(this._buttonType == UtilsScript.MenuButton.Info) {
+				// Lancement de la vue Info
+				GameClasseScript.Instance.CurrentLevelName = UtilsScript.SceneInfo;
+			} else if(this._buttonType == UtilsScript.MenuButton.Credits) {
+				// Lancement de la vue Credits
+				GameClasseScript.Instance.CurrentLevelName = UtilsScript.SceneCredits;
 			}
-			Application.LoadLevel(GameClasse.Instance.CurrentLevelName);
+			Application.LoadLevel(GameClasseScript.Instance.CurrentLevelName);
 		});
 	}
+	#endregion
 }
 
 

@@ -5,9 +5,12 @@ using System.Collections;
 /// Script de comportement des boutons dans le menu de pause
 /// </summary>
 public class MenuButtonInPauseScript : MenuButtonScript {
+	#region Attributes
 	// Permet de faire avancer l'animation normalement avec le time scale à 0
 	private float lastRealTime = 0.0f;
+	#endregion
 	
+	#region Untiy Methods
 	// Use this for initialization
 	void Start () {
 		//Ajout du listener
@@ -24,7 +27,9 @@ public class MenuButtonInPauseScript : MenuButtonScript {
 		// Les boutons du menu de pause doivent être animés même quand le TimeScale est à 0
 		this.AnimationWithoutTimeScale();
 	}
+	#endregion
 	
+	#region Methods
 	/// <summary>
 	/// Permet de faire fonctionner l'animation quand le TimeScale est à 0
 	/// </summary>
@@ -53,6 +58,7 @@ public class MenuButtonInPauseScript : MenuButtonScript {
 	        lastRealTime = Time.realtimeSinceStartup;
 		}
 	}
+	#endregion
 }
 
 

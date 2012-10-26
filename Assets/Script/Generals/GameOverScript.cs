@@ -5,16 +5,7 @@ using System.Collections;
 /// Script permettant de terminer le jeu
 /// </summary>
 public class GameOverScript : MonoBehaviour {
-	/// <summary>
-	/// True si la boule est arrivée à la fin
-	/// </summary>
-	public bool _isSolved = false;
-	
-	/// <summary>
-	/// True si la partie est abandonnée
-	/// </summary>
-	public bool _isAbandoned = false;
-	
+	#region Attributes
     // Définition du type d'évènement
     public delegate void ActionEvent();
 	
@@ -23,6 +14,17 @@ public class GameOverScript : MonoBehaviour {
 	/// </summary>
     static public event ActionEvent OnAbandon;
 	
+	/// <summary>
+	/// True si la boule est arrivée à la fin
+	/// </summary>
+	public bool _isSolved = false;
+		/// <summary>
+	/// True si la partie est abandonnée
+	/// </summary>
+	public bool _isAbandoned = false;
+	#endregion
+	
+	#region Unity Methods
 	// Evènement déclanché lors de l'appui sur le bouton gauche
     void OnAbandonEventReceived() {
         this._isAbandoned = true;
@@ -47,9 +49,10 @@ public class GameOverScript : MonoBehaviour {
 		
 		// Si le level est terminé, on charge le menu correspondant
 		if(this._isSolved) {
-			GameClasse.Instance.LevelSolved();
+			GameClasseScript.Instance.LevelSolved();
 		} else if(this._isAbandoned) {
-			GameClasse.Instance.LevelAbandoned();
+			GameClasseScript.Instance.LevelAbandoned();
 		}
 	}
+	#endregion
 }

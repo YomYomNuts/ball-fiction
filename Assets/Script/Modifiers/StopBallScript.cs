@@ -5,31 +5,25 @@ using System.Collections;
 /// Script général de comportement d'un bouton qui est activé/désactivé quand on appuie dessus
 /// </summary>
 public class StopBallScript : OnOffButtonScript {
+	#region Unity Methods
 	// Use this for initialization
 	void Start () {
 		if(this.TheBall == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
+	#endregion
 	
-	// Update is called once per frame
-	void Update () {}
-	
-//	void OnTriggerStay(Collider collider) {
-//		this.ActionWhenActivated();
-//	}
-	
+	// Actions à effectuées lorsque le bouton est activé
 	override protected void ActionWhenActivated() {
 		if(this.TheBall != null) {
+			// On met la vitesse d'avance et de rotation à 0
 			this.TheBall.rigidbody.velocity = Vector3.zero;
 			this.TheBall.rigidbody.angularVelocity = Vector3.zero;
-			// On joue le son associé
-			if(this.audio != null) {
-				AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
-			}
 		}
 	}
 	
+	// Actions à effectuées lorsque le bouton est desactivé
 	override protected void ActionWhenNonActivated() {
 		this.ActionWhenActivated();
 	}

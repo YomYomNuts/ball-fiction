@@ -5,36 +5,35 @@ using System.Collections;
 /// Script général de comportement d'un bouton qui est activé/désactivé quand on appuie dessus
 /// </summary>
 public class ReverseTreadmillButtonScript : OnOffButtonScript {
+	#region Attributes
 	/// <summary>
 	/// The breadmils which have to be inversed
 	/// </summary>
 	public GameObject _theTreadmills;
+	#endregion
 	
+	#region Unity Methods
 	// Use this for initialization
 	void Start () {
 		if(this.TheBall == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
 		if(this._theTreadmills == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("treadmills", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("treadmills", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
+	#endregion
 	
-	// Update is called once per frame
-	void Update () {}
-	
+	// Actions à effectuées lorsque le bouton est activé
 	override protected void ActionWhenActivated() {
 		if(this._theTreadmills != null) {
 			foreach(Transform current in this._theTreadmills.transform) {
 				current.gameObject.GetComponent<TreadmillScript>().InverseDirection();
 			}
 		}
-		// On joue le son associé
-		if(this.audio != null) {
-			AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
-		}
 	}
 	
+	// Actions à effectuées lorsque le bouton est desactivé
 	override protected void ActionWhenNonActivated() {
 		this.ActionWhenActivated();
 	}

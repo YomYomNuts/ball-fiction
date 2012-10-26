@@ -4,6 +4,7 @@ using System.Collections;
 /// Script de comportement de l'aggrandissement de la bille
 /// </summary>
 public class TimedAppearDisappearScript : TimedButtonScript {
+	#region Attributes
 	// Permet de savoir si la bille est invisible
 	private bool _isChanged = false;
 	
@@ -11,11 +12,13 @@ public class TimedAppearDisappearScript : TimedButtonScript {
 	/// Permet de déterminer s'il s'agit d'un bouton pour aparaître (si false, c'est un bouton pour disparaître)
 	/// </summary>
 	public bool _isAppearButton = false;
+	#endregion
 	
+	#region Unity Methods
 	// Use this for initialization
 	void Start () {
 		if(this.TheBall == null) {
-			Utils.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
+			UtilsScript.WarningMessageWhenNoGameObjectAssigned("ball", this.GetType().ToString(), this.gameObject.name);
 		}
 	}
 	// Update is called once per frame
@@ -25,10 +28,6 @@ public class TimedAppearDisappearScript : TimedButtonScript {
 			if(this.IsActivated && !this._isChanged) {
 				this.TheBall.renderer.enabled = _isAppearButton;
 				this._isChanged = true; // On enregistre le fait que la taille a changé
-				// On joue le son associé
-				if(this.audio != null) {
-					AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
-				}
 				// Le bouton se désactive à la fin de l'animation (voir TimedButtonScript)
 			} else if(!this.IsActivated && this._isChanged) {
 				this.TheBall.renderer.enabled = !_isAppearButton;
@@ -36,4 +35,5 @@ public class TimedAppearDisappearScript : TimedButtonScript {
 			}
 		}
 	}
+	#endregion
 }

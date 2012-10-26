@@ -5,6 +5,7 @@ using System.Collections;
 /// Script de comportement d'un bouton avec timer
 /// </summary>
 public class TimedButtonScript : MonoBehaviour {
+	#region Attributes
 	// Le temps passé depuis l'activation
 	private float _currentTime = 0.0f;
 	
@@ -40,8 +41,12 @@ public class TimedButtonScript : MonoBehaviour {
 			this._isActivated = value;
 		}
 	}
+	/// <summary>
+	/// Propriété liée à la bille
+	/// </summary>
 	public GameObject TheBall {
 		get {
+			// S'il n'y a aucune bille disponible, on prend la "bille par défaut" (singleton de BallScript)
 			if(this._theBall == null) {
 				this._theBall = BallScript.Instance.gameObject;
 			}
@@ -56,7 +61,9 @@ public class TimedButtonScript : MonoBehaviour {
 			return this._currentTime >= this._time;
 		}
 	}
+	#endregion
 	
+	#region Unity Methods
 	/// <summary>
 	/// Met à jour l'état de l'élément, en cours d'animation => fin d'animation
 	/// </summary>
@@ -85,11 +92,18 @@ public class TimedButtonScript : MonoBehaviour {
 			this.ActivateTheButton(collider);
 		}
 	}
+	#endregion
 	
+	#region Methods
 	private void ActivateTheButton(Collider collider) {
 		if(this.TheBall == collider.gameObject) {
+			// On joue le son associé
+			if(this.audio != null && this.audio.clip != null) {
+				AudioSource.PlayClipAtPoint(this.audio.clip, Camera.main.transform.position);
+			}
 			this._currentTime = 0.0f;
 			this.IsActivated = true;
 		}
 	}
+	#endregion
 }
