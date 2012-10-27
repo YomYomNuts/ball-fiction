@@ -124,7 +124,7 @@ public class TreadmillScript : MonoBehaviour {
 			}
 			
 		} else if(this._ballDirection == UtilsScript.Direction.Down) {
-			// Le tapis roulant "down" n'existe pas mais il est déjà géré, au cas où une idée nous viendrait un jour
+			// Le tapis roulant "down" n'existe pas mais il est déjà géré pour une future utilisation
 			this._ballDirection = UtilsScript.Direction.Up;
 			if(!this._ignoreMaximalForceBall) {
 				theAppearanceChild.renderer.material.mainTexture = Resources.Load("Data/LevelDesign/down_arrow") as Texture;

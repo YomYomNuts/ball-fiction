@@ -60,7 +60,6 @@ public class BallScript : MonoBehaviour {
 		if(this._theCamera == null) {
 			UtilsScript.WarningMessageWhenNoGameObjectAssigned("camera", this.GetType().ToString(), this.gameObject.name);
 		}
-		PlayerPrefs.DeleteAll(); // Pour ne pas poluer le PlayerPrefs pendant les tests
 	}
 	
 	// Update is called once per frame

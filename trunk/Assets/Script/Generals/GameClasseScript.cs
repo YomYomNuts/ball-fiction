@@ -222,12 +222,21 @@ public class GameClasseScript {
 		// Si le score actuel est meilleur que l'un des 3 meilleurs actuels, on remplace
 		if(!PlayerPrefs.HasKey(string.Concat("BestScore",GameClasseScript.Instance.CurrentLevelName)) || currentScore >= bestScores[0]) {
 			// S'il est meilleur que le premier, on décale le 2e et le 1er et on le place à la première place
-			PlayerPrefs.SetInt(string.Concat("ThirdBestScore",GameClasseScript.Instance.CurrentLevelName), bestScores[1]);
-			PlayerPrefs.SetInt(string.Concat("SecondBestScore",GameClasseScript.Instance.CurrentLevelName), bestScores[0]);
+			// On ne décale que s'il y a une valeur à décaler
+			// S'il n'y a pas encore de second meilleur score, on ne le décale pas sur le 3e score
+			if(PlayerPrefs.HasKey(string.Concat("SecondBestScore",GameClasseScript.Instance.CurrentLevelName))) {
+				PlayerPrefs.SetInt(string.Concat("ThirdBestScore",GameClasseScript.Instance.CurrentLevelName), bestScores[1]);
+			}
+			// S'il n'y a pas encore de meilleur score, on ne le décale pas sur le 2e score
+			if(PlayerPrefs.HasKey(string.Concat("BestScore",GameClasseScript.Instance.CurrentLevelName))) {
+				PlayerPrefs.SetInt(string.Concat("SecondBestScore",GameClasseScript.Instance.CurrentLevelName), bestScores[0]);
+			}
 			PlayerPrefs.SetInt(string.Concat("BestScore",GameClasseScript.Instance.CurrentLevelName), currentScore);
 		} else if(!PlayerPrefs.HasKey(string.Concat("SecondBestScore",GameClasseScript.Instance.CurrentLevelName)) || currentScore >= bestScores[1]) {
 			// S'il est meilleur que le second, on décale le 2e et on le place à la 2e place
-			PlayerPrefs.SetInt(string.Concat("ThirdBestScore",GameClasseScript.Instance.CurrentLevelName), bestScores[1]);
+			if(PlayerPrefs.HasKey(string.Concat("SecondBestScore",GameClasseScript.Instance.CurrentLevelName))) {
+				PlayerPrefs.SetInt(string.Concat("ThirdBestScore",GameClasseScript.Instance.CurrentLevelName), bestScores[1]);
+			}
 			PlayerPrefs.SetInt(string.Concat("SecondBestScore",GameClasseScript.Instance.CurrentLevelName), currentScore);
 		} else if(!PlayerPrefs.HasKey(string.Concat("ThirdBestScore",GameClasseScript.Instance.CurrentLevelName)) || currentScore >= bestScores[2]) {
 			// S'il est meilleur que le 3e, on le place à la 3e place
@@ -236,11 +245,17 @@ public class GameClasseScript {
 		
 		// Pareil pour le temps
 		if(!PlayerPrefs.HasKey(string.Concat("BestTime",GameClasseScript.Instance.CurrentLevelName)) || currentGameTime <= bestTimes[0]) {
-			PlayerPrefs.SetFloat(string.Concat("ThirdBestTime",GameClasseScript.Instance.CurrentLevelName), bestTimes[1]);
-			PlayerPrefs.SetFloat(string.Concat("SecondBestTime",GameClasseScript.Instance.CurrentLevelName), bestTimes[0]);
+			if(PlayerPrefs.HasKey(string.Concat("SecondBestTime",GameClasseScript.Instance.CurrentLevelName))) {
+				PlayerPrefs.SetFloat(string.Concat("ThirdBestTime",GameClasseScript.Instance.CurrentLevelName), bestTimes[1]);
+			}
+			if(PlayerPrefs.HasKey(string.Concat("BestTime",GameClasseScript.Instance.CurrentLevelName))) {
+				PlayerPrefs.SetFloat(string.Concat("SecondBestTime",GameClasseScript.Instance.CurrentLevelName), bestTimes[0]);
+			}
 			PlayerPrefs.SetFloat(string.Concat("BestTime",GameClasseScript.Instance.CurrentLevelName), currentGameTime);
 		} else if(!PlayerPrefs.HasKey(string.Concat("SecondBestTime",GameClasseScript.Instance.CurrentLevelName)) || currentGameTime <= bestTimes[1]) {
-			PlayerPrefs.SetFloat(string.Concat("ThirdBestTime",GameClasseScript.Instance.CurrentLevelName), bestTimes[1]);
+			if(PlayerPrefs.HasKey(string.Concat("SecondBestTime",GameClasseScript.Instance.CurrentLevelName))) {
+				PlayerPrefs.SetFloat(string.Concat("ThirdBestTime",GameClasseScript.Instance.CurrentLevelName), bestTimes[1]);
+			}
 			PlayerPrefs.SetFloat(string.Concat("SecondBestTime",GameClasseScript.Instance.CurrentLevelName), currentGameTime);
 		} else if(!PlayerPrefs.HasKey(string.Concat("ThirdBestTime",GameClasseScript.Instance.CurrentLevelName)) || currentGameTime <= bestTimes[2]) {
 			PlayerPrefs.SetFloat(string.Concat("ThirdBestTime",GameClasseScript.Instance.CurrentLevelName), currentGameTime);
