@@ -18,12 +18,17 @@ public class UtilsScript {
 	public const string SceneLevel2 = "Level2";
 	public const string SceneLevel3 = "Level3";
 	public const string SceneLevelDemo = "LevelDemo";
+	public const string SceneLevelPlayerName = "LevelPlayerName";
 	public const string SceneLevelSolved = "LevelSolved";
 	public const string SceneLevelAbandoned = "LevelAbandoned";
 	public const string SceneLevelLost = "LevelLost";
 	public const string SceneMenu = "Menu";
 	public const string SceneInfo = "Info";
 	public const string SceneCredits = "Credits";
+	/// <summary>
+	/// L'alphabet utilisé pour le nom du joueur
+	/// </summary>
+	public const string LetterPlayerName = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
 	#endregion
 	
 	#region Enumerations
@@ -50,7 +55,10 @@ public class UtilsScript {
 		Level2,
 		Level3,
 		Info,
-		Credits
+		Credits,
+		LevelSolved,
+		letterUp,
+		letterDown
 	}
 	#endregion
 	
@@ -101,7 +109,7 @@ public class UtilsScript {
 		} else {
 			seconds = string.Concat(seconds,".000");
 		}
-		return string.Format("{0}:{1}:{2}",hours, minuts,seconds);
+		return string.Format("{0}:{1}:{2}",hours, minuts, seconds);
 	}
 	
 	/// <summary>
