@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_3_5_6;UNITY_3_5;UNITY_EDITOR;ENABLE_PROFILER;UNITY_STANDALONE_WIN;ENABLE_GENERICS;ENABLE_DUCK_TYPING;ENABLE_TERRAIN;ENABLE_MOVIES;ENABLE_WEBCAM;ENABLE_MICROPHONE;ENABLE_NETWORK;ENABLE_CLOTH;ENABLE_WWW;ENABLE_SUBSTANCE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_3_5_7;UNITY_3_5;UNITY_EDITOR;ENABLE_PROFILER;UNITY_STANDALONE_WIN;ENABLE_GENERICS;ENABLE_DUCK_TYPING;ENABLE_TERRAIN;ENABLE_MOVIES;ENABLE_WEBCAM;ENABLE_MICROPHONE;ENABLE_NETWORK;ENABLE_CLOTH;ENABLE_WWW;ENABLE_SUBSTANCE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -37,28 +37,52 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity3.5.7/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity3.5.7/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Script\BallScript.cs" />
-     <Compile Include="Assets\Script\BreadmillScript.cs" />
-     <Compile Include="Assets\Script\ButtonScript.cs" />
-     <Compile Include="Assets\Script\ClickListenerScript.cs" />
-     <Compile Include="Assets\Script\CoinsScript.cs" />
-     <Compile Include="Assets\Script\DoorScript.cs" />
-     <Compile Include="Assets\Script\ElementScript.cs" />
-     <Compile Include="Assets\Script\EnlargerScript.cs" />
-     <Compile Include="Assets\Script\GameClasse.cs" />
-     <Compile Include="Assets\Script\GameOverScript.cs" />
-     <Compile Include="Assets\Script\MenuButtonScript.cs" />
-     <Compile Include="Assets\Script\PortalScript.cs" />
-     <Compile Include="Assets\Script\SpikesScript.cs" />
-     <Compile Include="Assets\Script\TrayScript.cs" />
-     <Compile Include="Assets\Script\Utils.cs" />
+     <Compile Include="Assets\Script\Generals\BallScript.cs" />
+     <Compile Include="Assets\Script\Generals\ClickListenerScript.cs" />
+     <Compile Include="Assets\Script\Generals\DisplayBestScoresAndTimesScript.cs" />
+     <Compile Include="Assets\Script\Generals\DisplayScoreScript.cs" />
+     <Compile Include="Assets\Script\Generals\DisplayTimeScript.cs" />
+     <Compile Include="Assets\Script\Generals\ElementScript.cs" />
+     <Compile Include="Assets\Script\Generals\ExitZoneScript.cs" />
+     <Compile Include="Assets\Script\Generals\GameClasseScript.cs" />
+     <Compile Include="Assets\Script\Generals\GameOverScript.cs" />
+     <Compile Include="Assets\Script\Generals\Menu\MenuButtonInPauseScript.cs" />
+     <Compile Include="Assets\Script\Generals\Menu\MenuButtonScript.cs" />
+     <Compile Include="Assets\Script\Generals\Menu\NextPreviousMenuButtonScript.cs" />
+     <Compile Include="Assets\Script\Generals\Menu\PagesNavigatorScript.cs" />
+     <Compile Include="Assets\Script\Generals\Menu\PauseMenuButtonScript.cs" />
+     <Compile Include="Assets\Script\Generals\Menu\ResumeMenuButtonScript.cs" />
+     <Compile Include="Assets\Script\Generals\TextActivatorScript.cs" />
+     <Compile Include="Assets\Script\Generals\TrayScript.cs" />
+     <Compile Include="Assets\Script\Generals\UtilsScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\CoinScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\OnOffButtonScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\PonctualAppearDisappearScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\PonctualButtonScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\PonctualChangeSizeScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\PonctualChangeViewScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\PortalScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\ReduceBallSpeedScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\ReverseTreadmillButtonScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\StopBallScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\TimedAppearDisappearScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\TimedButtonScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\TimedChangeSizeScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\TreadmillScript.cs" />
+     <Compile Include="Assets\Script\Modifiers\WindScript.cs" />
+     <Compile Include="Assets\Script\Obstacles\Doors\DoorScript.cs" />
+     <Compile Include="Assets\Script\Obstacles\Doors\OnOffButtonForDoorScript.cs" />
+     <Compile Include="Assets\Script\Obstacles\Doors\PonctualButtonForDoorScript.cs" />
+     <Compile Include="Assets\Script\Obstacles\Doors\TimedButtonForDoorScript.cs" />
+     <Compile Include="Assets\Script\Obstacles\HammerScript.cs" />
+     <Compile Include="Assets\Script\Obstacles\TimedDisplaySmokeScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
